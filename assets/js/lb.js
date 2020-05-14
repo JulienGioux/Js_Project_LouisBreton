@@ -46,7 +46,6 @@ class CardProduct {
 
         h5Product.innerText = this.product.name;
     }
-
 }
 
 let produit1 = new Product(`Sac à Main moule et crustacés`, `Un sac parfait pour aller à la pèche aux moules`, cat[2], 2500, `sacRef02323`);
