@@ -74,7 +74,7 @@
                         clip-rule="evenodd"></path>
                 </svg>
             </a>
-            <a href="" class="mx-2">
+            <a href="" class="mx-2" data-toggle="modal" data-target="#bucket">
                 <svg class="bi bi-bucket" width="2em" height="1.5em" viewBox="0 0 16 16" fill="white"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M8 1.5A4.5 4.5 0 003.5 6h-1a5.5 5.5 0 1111 0h-1A4.5 4.5 0 008 1.5z"
@@ -116,34 +116,34 @@
             </div>
         </section>
 
-        <section id="clothes">
+        <section id="topProducts">
         </section>
 
-        <section id="jewels">
+        <section id="products">
         </section>
 
         <section id="bags">
         </section>
     </main>
 
-    <footer class="container-fluid mt-5" id="footer">
+    <footer class="container-fluid mt-5 bg-dark text-white" id="footer">
         <div>
             <div class="row justify-content-center">
 
-                <!-- ============ coordoner ======= -->
+                <!-- ============ coordonées ======= -->
                 <div class="col-sm-9 col-md-5 col-lg-4 col-xl-2">
                     <p><br><b>LOUIS BRETON</b><br>
                         23 Rue Gwin Ruz<br>
                         29100 Douarnenez<br>
                         <b>02 44 10 03 51</b><br>
-                        </svg> contact@louisbreton.com<br>
+                        contact@louisbreton.com<br>
                     </p>
                 </div>
 
 
-                <!-- ============ mention legal === -->
+                <!-- ============ mentions légal === -->
                 <div class="col-sm-12 text-center">
-                    <a class="link text-decoration-none text-black" href="#footer" data-toggle="popover"
+                    <a class="link text-decoration-none text-white" href="#footer" data-toggle="popover"
                         data-placement="top" data-content="Nom de la société : LOUIS BRETON
                             Numéro de Siret : 83217523600013
                             Nom du responsable : 
@@ -157,11 +157,29 @@
                             HEBERGEUR : La Manu Le Havre
                             WEBMASTERS : Fashion Team">© Tous droits réservés - Louis Breton - 2020 -
                         Mentions légales</a>
-
-
                 </div>
             </div>
     </footer>
+
+    <div class="modal fade" id="bucket" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Votre Panier</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-dark">Payer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
