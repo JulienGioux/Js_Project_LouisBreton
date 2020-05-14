@@ -46,7 +46,6 @@ class CardProduct {
 
         h5Product.innerText = this.product.name;
     }
-
 }
 
 let produit1 = new Product(`Bracelets Or Flèches`, `Set de 4 bracelets en or`, cat[1], 149, `02323`, `bracelet3`);
