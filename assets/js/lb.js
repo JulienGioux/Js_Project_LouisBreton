@@ -28,7 +28,7 @@ class CardProduct {
     cssPriceBadge =`badge badge-primary p-2 my-auto`;
     cssDivContQty = `input-group input-group-sm my-3`;
     cssDivChildQty = `input-group-prepend ml-1 ml-auto`;
-    ccsInputTxt = `input-group-text`;
+    cssInputTxt = `input-group-text`;
     cssInputQty = `form-control`;
     cssBtn = `btn btn-dark m-1 w-100`;
 
@@ -140,23 +140,11 @@ for (let i = 0; i < nBtn.length; i++) {
     })
 }
 
-let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
-    for (productsArray < 6) {
-        cardsArray.push(new CardProduct(productsArray[randomCards]));
-    }
-cardsArray.push(new CardProduct(productsArray[randomCards]));
-
-// productsArray.forEach(element => {
-//     if ()
-//     cardsArray.push(new CardProduct(element));
+window.onload = () => {
     
-//     // for (i = 0; i < 6; i++) {
-//     //     let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
-//     //     console.log(randomCards)
-//     //     console.log(randomCards)
-     
-//     // }
-//     while (productsArray < 6) {
-//         cardsArray.push(new CardProduct(element));
-//     }
-//    });
+}
+
+function randomCardsHome () {
+    let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
+    cardsArray.push(new CardProduct(productsArray[randomCards]));
+}
