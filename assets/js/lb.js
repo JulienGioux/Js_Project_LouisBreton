@@ -24,11 +24,11 @@ class CardProduct {
     cssCardBody = `card-body`;
     cssH5 = `card-title h5`;
     cssP = `card-text`;
-    cssPrixTxt = `h5 text-right`;
-    cssPrixBadge =`badge badge-primary p-2 my-auto`;
+    cssPriceTxt = `h5 text-right`;
+    cssPriceBadge = `badge badge-primary p-2 my-auto`;
     cssDivContQty = `input-group input-group-sm my-3`;
     cssDivChildQty = `input-group-prepend ml-1 ml-auto`;
-    ccsInputTxt = `input-group-text`;
+    cssInputTxt = `input-group-text`;
     cssInputQty = `form-control`;
     cssBtn = `btn btn-dark m-1 w-100`;
 
