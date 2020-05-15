@@ -21,10 +21,17 @@ class CardProduct {
     cssCardCol = `col-sm-4 mt-2`;
     cssCard = `card`;
     cssImg = `card-img-top`;
+    cssCat = `badge badge-info`;
     cssCardBody = `card-body`;
-    cssH5 = `card-title`;
+    cssH5 = `card-title h5`;
     cssP = `card-text`;
-    cssBtn = `btn btn-dark mx-1`;
+    cssPrixTxt = `h5 text-right`;
+    cssPrixBadge =`badge badge-primary p-2 my-auto`;
+    cssDivContQty = `input-group input-group-sm my-3`;
+    cssDivChildQty = `input-group-prepend ml-1 ml-auto`;
+    ccsInputTxt = `input-group-text`;
+    cssInputQty = `form-control`;
+    cssBtn = `btn btn-dark m-1 w-100`;
 
     createDivCard = function () {
         //create and append Html elements
@@ -36,6 +43,7 @@ class CardProduct {
         let pDescr = divCarddBody.appendChild(document.createElement(`p`));
         let pCat = divCarddBody.appendChild(document.createElement(`p`));
         let pPrice = divCarddBody.appendChild(document.createElement(`p`));
+
         //Add classes CSS
         divCol.className = this.cssCardCol;
         divCard.className = this.cssCard;
@@ -47,7 +55,7 @@ class CardProduct {
         pPrice.className = this.cssP;
         //Define Attributes and contents
         imgProduct.setAttribute(`src`,this.product.imgSrc);
-        imgProduct.setAttribute(`alt`,`Photo du produit`);
+        imgProduct.setAttribute(`alt`,`Photo du produit : ${this.product.name}.jpg`);
         h5Product.innerText = this.product.name;
         pDescr.innerText = this.product.descr;
         pCat.innerText = this.product.cat;
@@ -58,6 +66,7 @@ class CardProduct {
         this.product = product;
         this.createDivCard();
     }
+    ///function display(array)
 
 }
 
@@ -84,22 +93,27 @@ productsArray.forEach(element => {
 let cardsClothesArray = [];
 let cardsJewelsArray = [];
 let cardsBagsArray = [];
+
+for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+    
+}
+
 cardsArray.forEach(element =>{
     switch (element.product.cat) {
         case cat[0]:
-            cardsClothesArray.push(element);
-            break;
+            element.display : 
+
         case cat[1]:
             cardsJewelsArray.push(element);
-            break;
+
         case cat[2]:
             cardsBagsArray.push(element);
-            break;
+
         default: console.log(`switch error`)
             break;
     }
 }) 
-
 
 
 console.log(`All Catégories: ` ,productsArray.length);
