@@ -108,3 +108,24 @@ for (let i = 0; i < nBtn.length; i++) {
         })
     })
 }
+
+let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
+    for (productsArray < 6) {
+        cardsArray.push(new CardProduct(productsArray[randomCards]));
+    }
+cardsArray.push(new CardProduct(productsArray[randomCards]));
+
+// productsArray.forEach(element => {
+//     if ()
+//     cardsArray.push(new CardProduct(element));
+    
+//     // for (i = 0; i < 6; i++) {
+//     //     let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
+//     //     console.log(randomCards)
+//     //     console.log(randomCards)
+     
+//     // }
+//     while (productsArray < 6) {
+//         cardsArray.push(new CardProduct(element));
+//     }
+//    });
