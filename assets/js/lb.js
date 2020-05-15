@@ -20,12 +20,12 @@ class CardProduct {
     cssCardCol = `col-sm-4 mt-2`;
     cssCard = `card`;
     cssImg = `card-img-top`;
-    cssCardBody = `card-body`;
     cssCat = `badge badge-info`;
-    cssH1 = `card-title h5`;
+    cssCardBody = `card-body`;
+    cssH5 = `card-title h5`;
     cssP = `card-text`;
-    cssPriceTxt = `h5 text-right`;
-    cssPriceBadge =`badge badge-primary p-2 my-auto`;
+    cssPrixTxt = `h5 text-right`;
+    cssPrixBadge =`badge badge-primary p-2 my-auto`;
     cssDivContQty = `input-group input-group-sm my-3`;
     cssDivChildQty = `input-group-prepend ml-1 ml-auto`;
     ccsInputTxt = `input-group-text`;
@@ -38,58 +38,27 @@ class CardProduct {
         let divCard = divCol.appendChild(document.createElement(`div`));
         let imgProduct = divCard.appendChild(document.createElement(`img`));
         let divCarddBody = divCard.appendChild(document.createElement(`div`));
-        let pCat = divCarddBody.appendChild(document.createElement(`p`));
-        let h1Product = divCarddBody.appendChild(document.createElement(`h1`));
+        let h5Product = divCarddBody.appendChild(document.createElement(`h5`));
         let pDescr = divCarddBody.appendChild(document.createElement(`p`));
-        let priceTxt = divCarddBody.appendChild(document.createElement(`h2`));
-        let priceBadge = priceTxt.appendChild(document.createElement(`span`));
-        let divContQty = divCarddBody.appendChild(document.createElement(`div`));
-        let divChildQty = divContQty.appendChild(document.createElement(`div`));
-        let inputTxt = divChildQty.appendChild(document.createElement(`span`));
-        let inputQty = divChildQty.appendChild(document.createElement(`input`));
-        let btnAddToCard = divCarddBody.appendChild(document.createElement(`button`));
-        
-        //Define Attributes and contents
-        imgProduct.setAttribute(`src`,this.product.imgSrc);
-        imgProduct.setAttribute(`alt`,`Photo du produit : ${this.product.name}.jpg`);
-        pCat.innerText = this.product.cat;
-        h1Product.innerText = this.product.name;
-        pDescr.innerText = this.product.descr;
-        priceBadge.innerText = `${this.product.price} €`;
-        inputTxt.innerText = `Qté`;
-        inputQty.setAttribute(`aria-label`,`Sizing example input`);
-        inputQty.setAttribute(`aria-describedby`,`inputGroup-sizing-sm`);
-        inputQty.setAttribute(`type`,`number`);
-        inputQty.setAttribute(`value`, `0`);
-        inputQty.setAttribute(`min`, `0`);
-        inputQty.setAttribute(`max`, `10`);
-        inputQty.setAttribute(`step`, `1`);
-        inputQty.setAttribute(`id`, `inputQty${this.product.ref}`);
-        btnAddToCard.setAttribute(`id`, `btn${this.product.ref}`);
-        btnAddToCard.innerText = `Ajouter au panier`;
-
-
-
+        let pCat = divCarddBody.appendChild(document.createElement(`p`));
+        let pPrice = divCarddBody.appendChild(document.createElement(`p`));
 
         //Add classes CSS
         divCol.className = this.cssCardCol;
         divCard.className = this.cssCard;
         imgProduct.className = this.cssImg;
         divCarddBody.className = this.cssCardBody;
-        pCat.className = this.cssCat;
-        h1Product.className = this.cssH5;
+        h5Product.className = this.cssH5;
         pDescr.className = this.cssP;
-        priceTxt.className = this.cssPriceTxt;
-        priceBadge.className = this.cssPriceBadge;
-        divContQty.className = this.cssDivContQty;
-        divChildQty.className = this.cssDivChildQty;
-        inputTxt.className = this.cssInputTxt;
-        inputQty.className = this.cssInputQty;
-        btnAddToCard.className = this.cssBtn;
-
-
-
-
+        pCat.className = this.cssP;
+        pPrice.className = this.cssP;
+        //Define Attributes and contents
+        imgProduct.setAttribute(`src`,this.product.imgSrc);
+        imgProduct.setAttribute(`alt`,`Photo du produit : ${this.product.name}.jpg`);
+        h5Product.innerText = this.product.name;
+        pDescr.innerText = this.product.descr;
+        pCat.innerText = this.product.cat;
+        pPrice.innerText = `${this.product.price} €`;
     }
 
     constructor(product) {
