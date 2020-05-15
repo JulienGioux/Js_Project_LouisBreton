@@ -1,3 +1,6 @@
 .filter {
     filter: brightness(0.5);
 }
+a {
+    cursor: pointer;
+}

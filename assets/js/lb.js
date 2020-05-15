@@ -120,7 +120,81 @@ class CardProduct {
 
 }
 
+class cartProduct {
+    container = document.getElementById(`modalBody`);
+    cssTable = `table table-borderless text-center m-0`;
+    cssDivQte = `input-group-prepend ml-1 ml-auto`;
+    cssInput = `form-control`;
+    csstdTotalE = `text-bold`;
 
+    createDivCart = function () {
+        //THEAD
+        let divTable = this.container.appendChild(document.createElement(`table`));
+        let divThead = divTable.appendChild(document.createElement(`thead`));
+        let headerTr = divThead.appendChild(document.createElement(`tr`));
+        let thRef = headerTr.appendChild(document.createElement(`th`));
+        let thProduct = headerTr.appendChild(document.createElement(`th`));
+        let thQte = headerTr.appendChild(document.createElement(`th`));
+        let thPrice = headerTr.appendChild(document.createElement(`th`));
+        let thEmpty = headerTr.appendChild(document.createElement(`th`));
+        //TBODY
+        let divBody = divTable.appendChild(document.createElement(`tbody`));
+        let bodyTr = divBody.appendChild(document.createElement(`tr`));
+        let thRefInside = bodyTr.appendChild(document.createElement(`th`));
+        let tdName = bodyTr.appendChild(document.createElement(`td`));
+        let tdQte = bodyTr.appendChild(document.createElement(`td`));
+        let tdDiv = tdQte.appendChild(document.createElement(`div`));
+        let tdInput = tdDiv.appendChild(document.createElement(`input`));
+        let tdPrice = bodyTr.appendChild(document.createElement(`td`));
+        let tdImg = bodyTr.appendChild(document.createElement(`td`));
+        let imgDustbin = tdImg.appendChild(document.createElement(`img`));
+        //TTOTAL
+        let bodyTrTotal = divBody.appendChild(document.createElement(`tr`));
+        let tdEmpty1 = bodyTrTotal.appendChild(document.createElement(`td`));
+        let tdEmpty2 = bodyTrTotal.appendChild(document.createElement(`td`));
+        let thTotal = bodyTrTotal.appendChild(document.createElement(`th`));
+        let tdTotalE = bodyTrTotal.appendChild(document.createElement(`td`));
+        let tdEmpty3 = bodyTrTotal.appendChild(document.createElement(`td`));
+        
+        //Define Attributes and contents
+        thRef.setAttribute(`scope`,`col`);
+        tdInput.setAttribute(`aria-label`,`Sizing example input`);
+        tdInput.setAttribute(`aria-describedby`,`inputGroup-sizing-sm`);
+        tdInput.setAttribute(`type`,`number`);
+        tdInput.setAttribute(`value`, `0`);
+        tdInput.setAttribute(`min`, `0`);
+        tdInput.setAttribute(`max`, `10`);
+        tdInput.setAttribute(`step`, `1`);
+        tdInput.setAttribute(`id`, `inputQty...`);
+        imgDustbin.setAttribute(`src`, `assets/img/dustbin.svg`);
+        thTotal.setAttribute(`scope`,`col`);
+        thRef.innerText = `Ref`;
+        thProduct.innerText = `Produit`;
+        thQte.innerText = `Quantité`;
+        thPrice.innerText = `Prix`;
+        thEmpty.innerText = ``;
+        thRefInside.innerText = `12345`;
+        tdName.innerText = `Pull Homme 100% cachemire`;
+        tdPrice.innerText = `€`;
+        thTotal.innerText = `Total`;
+        tdTotalE.innerText = `€€€`;
+        
+        //Add classes CSS
+        divTable.className = this.cssTable;
+        tdDiv.className = this.cssDivQte;
+        tdInput.className = this.cssInput;
+        tdTotalE.className = this.csstdTotalE;
+
+    }
+
+    constructor(product) {
+        this.product = product;
+        this.createDivCart();
+    }
+    ///function display(array)
+}
+
+let varCart = new cartProduct();
 
 //création des ojects produits dans un tableau
 let productsArray = [];
@@ -141,8 +215,6 @@ productsArray[13] = new Product(`Chemise en Soie`, `Délicate chemise en soie a�
 productsArray[14] = new Product(`Veste en laine métallisée`, `Ravissante veste réalisée en laine métallisé.`, cat[0], 359, `17119`, `veste1`);
 productsArray[15] = new Product(`Veste en laine`, `Ravissante veste réalisée en laine rose.`, cat[0], 330, `17923`, `veste2`);
 
-
-
 //création des cards dans un tableau
 let cardsArray = [];
 
@@ -161,5 +233,17 @@ for (let i = 0; i < nBtn.length; i++) {
     })
 }
 
+window.onload = function() {
+    
+    for (i = 0; i < 6; i++) {
+        let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
+        cardsArray.push(new CardProduct(productsArray[randomCards]));
+    }
+}
+
+function calcPrice () {
+    let resultat = (inputQty * pPrice)
+    return resultat;
+}
 
 
