@@ -221,13 +221,10 @@ window.onload = function() {
         cardsArray.push(new CardProduct(productsArray[randomCards]));
     }
 }
-// function randomCardsHome() {
-//     let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
-//     cardsArray.push(new CardProduct(productsArray[randomCards]));
-// }
 
-// window.onload = function() {
-//     for (i = 0; i < 6; i++) {
-//         randomCardsHome()
-//     }
-// }
+function calcPrice () {
+    let resultat = (inputQty * pPrice)
+    return resultat;
+}
+
+
