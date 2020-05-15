@@ -25,7 +25,7 @@ class CardProduct {
     cssH1 = `card-title h5`;
     cssP = `card-text`;
     cssPriceTxt = `h5 text-right`;
-    cssPriceBadge =`badge badge-primary p-2 my-auto`;
+    cssPriceBadge = `badge badge-primary p-2 my-auto`;
     cssDivContQty = `input-group input-group-sm my-3`;
     cssDivChildQty = `input-group-prepend ml-1 ml-auto`;
     cssInputTxt = `input-group-text`;
