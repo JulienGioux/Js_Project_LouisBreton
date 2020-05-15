@@ -109,3 +109,10 @@ for (let i = 0; i < nBtn.length; i++) {
     })
 }
 
+window.onload = () => {
+    
+}
+function randomCardsHome () {
+    let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
+    cardsArray.push(new CardProduct(productsArray[randomCards]));
+}
