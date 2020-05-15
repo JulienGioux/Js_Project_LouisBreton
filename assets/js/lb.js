@@ -1,5 +1,4 @@
-
-const cat = [`clothes`,`jewels`,`bags`];
+const cat = [`clothes`, `jewels`, `bags`];
 const pathImg = `assets/img/`;
 class Product {
     constructor(name, descr, cat, price, ref, imgSrc) {
@@ -12,7 +11,7 @@ class Product {
     }
     my_value = 21;
     addProduct(qty) {
-        return qty+this.my_value;
+        return qty + this.my_value;
     };
 }
 
@@ -46,8 +45,8 @@ class CardProduct {
         pCat.className = this.cssP;
         pPrice.className = this.cssP;
         //Define Attributes and contents
-        imgProduct.setAttribute(`src`,this.product.imgSrc);
-        imgProduct.setAttribute(`alt`,`Photo du produit`);
+        imgProduct.setAttribute(`src`, this.product.imgSrc);
+        imgProduct.setAttribute(`alt`, `Photo du produit`);
         h5Product.innerText = this.product.name;
         pDescr.innerText = this.product.descr;
         pCat.innerText = this.product.cat;
@@ -77,32 +76,19 @@ productsArray[10] = new Product(`Sac de voyage Cuir`, `Ce sac en cuir haut de ga
 
 //création des cards dans un tableau
 let cardsArray = [];
-productsArray.forEach(element => {
-    cardsArray.push(new CardProduct(element));
-   });
-// un tableau par catégorie
-let cardsClothesArray = [];
-let cardsJewelsArray = [];
-let cardsBagsArray = [];
-cardsArray.forEach(element =>{
-    switch (element.product.cat) {
-        case cat[0]:
-            cardsClothesArray.push(element);
-            break;
-        case cat[1]:
-            cardsJewelsArray.push(element);
-            break;
-        case cat[2]:
-            cardsBagsArray.push(element);
-            break;
-        default: console.log(`switch error`)
-            break;
-    }
-}) 
 
-
-
-console.log(`All Catégories: ` ,productsArray.length);
-console.log(cat[0], ` : ` ,cardsClothesArray.length);
-console.log(cat[1], ` : ` ,cardsJewelsArray.length);
-console.log(cat[2], ` : ` ,cardsBagsArray.length);
+let nBtn = document.getElementsByClassName('nav-item nav-link text-white');
+console.log(nBtn)
+for (let i = 0; i < nBtn.length; i++) {
+    nBtn[i].addEventListener('click', function showProducts() {
+        let idCatData = document.getElementById(this.id);
+        let catData = idCatData.dataset.cat;
+        cards.innerHTML = '';
+        cardsArray = [];
+        productsArray.forEach(element => {
+            if (element.cat === catData) {
+                cardsArray.push(new CardProduct(element));
+            }
+        })
+    })
+}
