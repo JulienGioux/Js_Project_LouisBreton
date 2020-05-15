@@ -65,37 +65,39 @@
         </div>
         <div class="mr-0">
             <a href="" class="mx-2">
-                <img src="assets/img/contact.svg">
+                <img class="align-top" src="assets/img/contact.svg">
             </a>
             <a class="mx-2" data-toggle="modal" data-target="#bucket">
-                <img src="assets/img/panier.svg">
+                <img class="position-absolute" style="z-index: -1;" src="assets/img/panier.svg"><span
+                    class="badge badge-info align-bottom align-left ml-3 mt-3">0</span>
             </a>
         </div>
     </nav>
 
     <main>
-        <section id="topProducts" class="container p-2 mt-3">
-            <div class="row">
-                <div id="card1" class="col-sm">
-
-
-                </div>
-                <div class="col-sm" id="card2">
-
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="card">
-                    <img src="https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton--HJK05WXYC631_PM2_Front%20view.jpg?wid=640&hei=640"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">PARKA NAUTIQUE LV ELECTRIC</h5>
-                        <p class="card-text">Cette parka LV Electric décline dans un esprit nautique le thème plein
-                            air de la saison.</p>
-                        <p class="card-text">Vêtement</p>
-                        <p class="card-text">2 700€</p>
-                        <a href="#" class="btn btn-dark mx-1">Ajouter au panier</a>
-                        <a href="#" class="btn btn-dark mx-1">Achat</a>
+        <section id="Products" class="container p-2 mt-3">
+            <div id="cards" class="row">
+                <!-- here comes the cards of each product -->
+                <div class="col-sm-4 mt-2">
+                    <div class="card">
+                        <img src="https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton--HJK05WXYC631_PM2_Front%20view.jpg?wid=640&hei=640"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="badge badge-info">Vêtement</p>
+                            <h5 class="card-title">PARKA NAUTIQUE LV ELECTRIC</h5>
+                            <p class="card-text">Cette parka LV Electric décline dans un esprit nautique le thème plein
+                                air de la saison.</p>
+                            <h1 class="h4 text-right"><span class="badge badge-primary p-2 my-auto">2 700 €</span></h1>
+                            <div class="input-group input-group-sm my-3">
+                                <div class="input-group-prepend ml-1 ml-auto">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Qté</span>
+                                    <input class="form-control" aria-label="Sizing example input"
+                                        aria-describedby="inputGroup-sizing-sm" type="number" value="0" min="0" max="10"
+                                        step="1" id="refProd">
+                                </div>
+                            </div>
+                            <button class="btn btn-dark m-1 w-100">Ajouter au panier</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-4 mt-2">
@@ -104,7 +106,8 @@
                             class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">PARKA NAUTIQUE LV ELECTRIC</h5>
-                            <p class="card-text">Cette parka LV Electric décline dans un esprit nautique le thème plein
+                            <p class="card-text">Cette parka LV Electric décline dans un esprit nautique le thème
+                                plein
                                 air de la saison.</p>
                             <p class="card-text">Vêtement</p>
                             <p class="card-text">2 700€</p>
@@ -119,7 +122,8 @@
                             class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">PARKA NAUTIQUE LV ELECTRIC</h5>
-                            <p class="card-text">Cette parka LV Electric décline dans un esprit nautique le thème plein
+                            <p class="card-text">Cette parka LV Electric décline dans un esprit nautique le thème
+                                plein
                                 air de la saison.</p>
                             <p class="card-text">Vêtement</p>
                             <p class="card-text">2 700€</p>
