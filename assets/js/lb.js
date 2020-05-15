@@ -1,5 +1,4 @@
-
-const cat = [`clothes`,`jewels`,`bags`];
+const cat = [`clothes`, `jewels`, `bags`];
 const pathImg = `assets/img/`;
 class Product {
     constructor(name, descr, cat, price, ref, imgSrc) {
@@ -12,7 +11,7 @@ class Product {
     }
     my_value = 21;
     addProduct(qty) {
-        return qty+this.my_value;
+        return qty + this.my_value;
     };
 }
 
@@ -83,40 +82,29 @@ productsArray[7] = new Product(`Pochette Cuir`, `Tout petit, tout mignon. N'empo
 productsArray[8] = new Product(`Sac Bandoulière Cuir`, `Cuir végétal cousu main. Avec 1 compartiment intérieur zippé, portes stylos, 2 poches intérieures non zippées. Lanière amovible et réglable. Dimensions :  Hauteur 40 cm Largeur  27 cm Profondeur 11 cm`, cat[2], 140, `12892`, `sacBandouliere`);
 productsArray[9] = new Product(`Sac à main Cuir`, `Elégant et contemporain, l'accessoire idéal de la citadine ... Intérieur doublé, comportant une poche zippée, 5 poches plaquées couvrant toutes les utilisations (portable, stylos, pochette mouchoirs ...), 1 mousqueton sur lanière de 30 cms, intégrée au sac en guise de porte-clés. Poche extérieure de la largeur du sac sur 27 cms de hauteur. Largeur du sac : 33 cms Hauteur du sac : 32 cm`, cat[2], 90, `12887`, `sacMain`);
 productsArray[10] = new Product(`Sac de voyage Cuir`, `Ce sac en cuir haut de gamme de taille plus grande est le compagnon idéal en toutes occasions. Que vous partiez en escapade le temps d'un week-end, que vous alliez au sport ou vous rendiez à vos activités de loisirs, ce sac de voyage dipose de toute la place nécessaire. Sa taille et son look élégant en font le partenaire idéal pour toutes vos sorties. 100% fait à la main: Grâce à des coutures soignées et d'excellente fabrication cette sac est un fidèle compagnon.`, cat[2], 139, `12889`, `sacVoyage`);
+productsArray[11] = new Product(`Pull Homme`, `Pull ras du cou bleu 52% polyester , 48% coton.`, cat[0], 170, `17839`, `pullhomme1`);
+productsArray[12] = new Product(`Pull Homme 100% cachemire`, `Pull ras du cou en cachemire doux camel.`, cat[0], 229, `17203`, `pullhomme2`);
+productsArray[13] = new Product(`Chemise en Soie`, `Délicate chemise en soie aérienne blanche. Pourvu de manches longues et d'un col pointu`, cat[0], 300, `17359`, `chemise1`);
+productsArray[14] = new Product(`Veste en laine métallisée`, `Ravissante veste réalisée en laine métallisé.`, cat[0], 359, `17119`, `veste1`);
+productsArray[15] = new Product(`Veste en laine`, `Ravissante veste réalisée en laine rose.`, cat[0], 330, `17923`, `veste2`);
+
+
 
 //création des cards dans un tableau
 let cardsArray = [];
-productsArray.forEach(element => {
-    cardsArray.push(new CardProduct(element));
-   });
-// un tableau par catégorie
-let cardsClothesArray = [];
-let cardsJewelsArray = [];
-let cardsBagsArray = [];
 
-for (let index = 0; index < array.length; index++) {
-    const element = array[index];
-    
+let nBtn = document.getElementsByClassName('nav-item nav-link text-white');
+console.log(nBtn)
+for (let i = 0; i < nBtn.length; i++) {
+    nBtn[i].addEventListener('click', function showProducts() {
+        let idCatData = document.getElementById(this.id);
+        let catData = idCatData.dataset.cat;
+        cards.innerHTML = '';
+        cardsArray = [];
+        productsArray.forEach(element => {
+            if (element.cat === catData) {
+                cardsArray.push(new CardProduct(element));
+            }
+        })
+    })
 }
-
-cardsArray.forEach(element =>{
-    switch (element.product.cat) {
-        case cat[0]:
-            element.display : 
-
-        case cat[1]:
-            cardsJewelsArray.push(element);
-
-        case cat[2]:
-            cardsBagsArray.push(element);
-
-        default: console.log(`switch error`)
-            break;
-    }
-}) 
-
-
-console.log(`All Catégories: ` ,productsArray.length);
-console.log(cat[0], ` : ` ,cardsClothesArray.length);
-console.log(cat[1], ` : ` ,cardsJewelsArray.length);
-console.log(cat[2], ` : ` ,cardsBagsArray.length);
