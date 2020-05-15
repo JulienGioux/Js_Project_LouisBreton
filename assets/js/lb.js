@@ -1,5 +1,18 @@
 const cat = [`clothes`, `jewels`, `bags`];
 const pathImg = `assets/img/`;
+
+class Panier {
+    Total = 0;
+    constructor () {
+
+    }
+    addToCart = function (product) {
+        console.log(product);
+    }
+}
+
+const cart = new Panier();
+cart.addToCart();
 class Product {
     constructor(name, descr, cat, price, ref, imgSrc) {
         this.name = name;
@@ -9,9 +22,8 @@ class Product {
         this.price = price;
         this.imgSrc = `${pathImg}${cat}/${imgSrc}.jpg`;
     }
-    my_value = 21;
-    addProduct(qty) {
-        return qty + this.my_value;
+    addProduct = function(product) {
+        console.log(product);
     };
 }
 
@@ -67,7 +79,15 @@ class CardProduct {
         inputQty.setAttribute(`id`, `inputQty${this.product.ref}`);
         btnAddToCard.setAttribute(`id`, `btn${this.product.ref}`);
         btnAddToCard.innerText = `Ajouter au panier`;
-
+        const e = this.product.ref;
+        btnAddToCard.addEventListener(`click`, function test () {
+            let ref = this.id.slice(3);
+            productsArray.forEach(element => {
+                if (element.ref === ref) {
+                    cart.addToCart(element);
+                };
+            });
+        });
 
 
 
@@ -100,6 +120,8 @@ class CardProduct {
 
 }
 
+
+
 //création des ojects produits dans un tableau
 let productsArray = [];
 productsArray[0] = new Product(`Bracelets Or Flèches`, `Set de 4 bracelets en or`, cat[1], 149, `02323`, `bracelet3`);
@@ -125,7 +147,6 @@ productsArray[15] = new Product(`Veste en laine`, `Ravissante veste réalisée e
 let cardsArray = [];
 
 let nBtn = document.getElementsByClassName('nav-item nav-link text-white');
-console.log(nBtn)
 for (let i = 0; i < nBtn.length; i++) {
     nBtn[i].addEventListener('click', function showProducts() {
         let idCatData = document.getElementById(this.id);
@@ -139,3 +160,6 @@ for (let i = 0; i < nBtn.length; i++) {
         })
     })
 }
+
+
+
