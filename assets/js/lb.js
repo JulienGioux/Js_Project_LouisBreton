@@ -48,18 +48,18 @@ class CardProduct {
         let inputTxt = divChildQty.appendChild(document.createElement(`span`));
         let inputQty = divChildQty.appendChild(document.createElement(`input`));
         let btnAddToCard = divCarddBody.appendChild(document.createElement(`button`));
-        
+
         //Define Attributes and contents
-        imgProduct.setAttribute(`src`,this.product.imgSrc);
-        imgProduct.setAttribute(`alt`,`Photo du produit : ${this.product.name}.jpg`);
+        imgProduct.setAttribute(`src`, this.product.imgSrc);
+        imgProduct.setAttribute(`alt`, `Photo du produit : ${this.product.name}.jpg`);
         pCat.innerText = this.product.cat;
         h1Product.innerText = this.product.name;
         pDescr.innerText = this.product.descr;
         priceBadge.innerText = `${this.product.price} €`;
         inputTxt.innerText = `Qté`;
-        inputQty.setAttribute(`aria-label`,`Sizing example input`);
-        inputQty.setAttribute(`aria-describedby`,`inputGroup-sizing-sm`);
-        inputQty.setAttribute(`type`,`number`);
+        inputQty.setAttribute(`aria-label`, `Sizing example input`);
+        inputQty.setAttribute(`aria-describedby`, `inputGroup-sizing-sm`);
+        inputQty.setAttribute(`type`, `number`);
         inputQty.setAttribute(`value`, `0`);
         inputQty.setAttribute(`min`, `0`);
         inputQty.setAttribute(`max`, `10`);
@@ -141,18 +141,10 @@ for (let i = 0; i < nBtn.length; i++) {
 }
 
 window.onload = () => {
-    
+
 }
 
-function randomCardsHome () {
+function randomCardsHome() {
     let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
     cardsArray.push(new CardProduct(productsArray[randomCards]));
 }
-
-
-function calcPrice () {
-    let resultat = (inputQty * pPrice)
-    return resultat;
-}
-
-
