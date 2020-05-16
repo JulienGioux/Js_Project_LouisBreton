@@ -67,7 +67,7 @@
             <a class="mx-2">
                 <img class="align-top" src="assets/img/contact.svg">
             </a>
-            <a class="mx-2" data-toggle="modal" data-target="#bucket" id="cartButton">
+            <a class="mx-2" data-toggle="modal" data-target="#bucket" id="cartButton" onclick="myCart.createHTMLCart()">
                 <img class="position-absolute" style="z-index: -1;" src="assets/img/panier.svg"><span
                     class="badge badge-info align-bottom align-left ml-3 mt-3">0</span>
             </a>
@@ -140,7 +140,7 @@
                             <th scope="col"></th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="containerList"> <!--container du panier -->
                           <tr>
                             <th scope="row">17203</th>
                             <td>Bracelets Or Flèches</td>
