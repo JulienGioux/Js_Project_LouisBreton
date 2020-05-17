@@ -71,7 +71,7 @@ class Cart {
                     }
                 })
 
-                imgDustbin.addEventListener(`click`, function () {                   
+                imgDustbin.addEventListener(`click`, function () {
                     let ref = this.id.slice(14);
                     let qty = 0;
                     if (element.qty > 0) {
@@ -319,18 +319,15 @@ for (let i = 0; i < nBtn.length; i++) {
 }
 
 //affichage aléatoire des produits au chargement de la page
-window.onload = function () {
+var i, j, k;
+for (i = productsArray.length - 1; i > 0; i--) { //boucle random method fisher yates. Mélange l'ordre des articles dans le array
+    j = Math.floor(Math.random() * i)
+    k = productsArray[i]
+    productsArray[i] = productsArray[j]
+    productsArray[j] = k
+}
 
-    var i, j, k;
-    for (i = productsArray.length - 1; i > 0; i--) { //boucle random method fisher yates. Mélange l'ordre des articles dans le array
-        j = Math.floor(Math.random() * i)
-        k = productsArray[i]
-        productsArray[i] = productsArray[j]
-        productsArray[j] = k
-    }
-
-    for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec les 9 premiers articles
-        const element = productsArray[index];
-        cardsArray.push(new CardProduct(element));
-    }
+for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec les 9 premiers articles
+    const element = productsArray[index];
+    cardsArray.push(new CardProduct(element));
 }
