@@ -71,9 +71,23 @@ class Cart {
 
                 //addEventListener
                 tdInput.addEventListener(`change`, function (){
-                    let qty = document.getElementById(this.id);
+                    let qty = document.getElementById(this.id).value;
                     let ref = this.id.slice(12);
-                    console.log(qty.value, ref); //récupère la qty et la ref à envoyer dans la fonction pour modifier le contenu du panier. fonction A FAIRE !!!
+                    if (element.qty > 0) {
+                        for (let index = 0; index < productsArray.length; index++) {
+                            const e = productsArray[index];
+                            if (e.ref === ref) {
+                                qty = qty - element.qty;
+                                myCart.addToCart(e, qty);
+                                myCart.createHTMLCart();
+                                console.log(myCart.products);
+                            };
+                                
+                            
+
+                        }
+                    }
+
                 })
             }
 
@@ -98,8 +112,6 @@ class Cart {
         } else { //panier vide
             // A faire : Centrer le Texte.
             this.container.innerHTML = `<h1 class="mx-auto h4">Votre panier est vide !</h1>`;
-            this.container.className = ``;
-
         }
     }
     /// END CART PAULINE => "myCart.createHTMLCart();" or in class "this.createHTMLCart();"
@@ -139,10 +151,12 @@ class Cart {
             e.qty -= parseInt(qty); //met à jour les stocks
         }
 
-
-
         ///pour tester la fonction en console
         console.log(myCart.products);
+    }
+
+    updateCart = function (ref, qty) {
+
     }
     //calcul du total dans le panier
     totalPrice = function () {
