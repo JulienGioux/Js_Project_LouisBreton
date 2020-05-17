@@ -66,7 +66,7 @@ class Cart {
                 //Text par défaut
                 thRefInside.innerText = element.ref;
                 tdName.innerText = element.name;
-                tdPrice.innerText = `${element.price} €`;
+                tdPrice.innerText = `${element.price*element.qty} €`; //calcul et affiche le total par article
 
             }
 
@@ -81,7 +81,8 @@ class Cart {
 
             thTotal.setAttribute(`scope`, `col`);
             thTotal.innerText = `Total`;
-            tdTotalE.innerText = `€€€`;
+            this.total =
+                tdTotalE.innerText = `${this.totalPrice()} €`;
 
             //Add classes CSS
             tdDiv.className = this.cssDivQte;
@@ -124,22 +125,28 @@ class Cart {
                 let copie = Object.assign({}, e); //sinon, copie l'objet
                 copie.qty = parseInt(qty); //modifie les quantités
                 this.products.push(copie); //ajoute au panier
-                e.qty -= parseInt(qty);//met à jour les stocks
+                e.qty -= parseInt(qty); //met à jour les stocks
             }
 
         } else {
             this.products[0] = Object.assign({}, e); //si le panier est vide, ajoute l'article
             this.products[0].qty = parseInt(qty); //et modifie les quantités
-            e.qty -= parseInt(qty);//met à jour les stocks
+            e.qty -= parseInt(qty); //met à jour les stocks
         }
+
+
+
         ///pour tester la fonction en console
         console.log(myCart.products);
-        //
     }
-    TotalRefPrice = function () {
+    //calcul du total dans le panier
+    totalPrice = function () {
+        let result = 0;
+        this.products.forEach(e => {
+            result += (parseInt(e.qty) * e.price);
+        });
 
-        let totalForRef = (parseInt(e.cartQty) * e.price);
-        return totalForRef;
+        return result;
     }
 }
 
@@ -298,15 +305,15 @@ for (let i = 0; i < nBtn.length; i++) {
 window.onload = function () {
 
     var i, j, k;
-    for (i = productsArray.length -1; i > 0; i--) { //boucle random method fisher yates. Mélange l'ordre des articles dans le array
-      j = Math.floor(Math.random() * i)
-      k = productsArray[i]
-      productsArray[i] = productsArray[j]
-      productsArray[j] = k
+    for (i = productsArray.length - 1; i > 0; i--) { //boucle random method fisher yates. Mélange l'ordre des articles dans le array
+        j = Math.floor(Math.random() * i)
+        k = productsArray[i]
+        productsArray[i] = productsArray[j]
+        productsArray[j] = k
     }
 
     for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec les 9 premiers articles
         const element = productsArray[index];
-        cardsArray.push(new CardProduct(element));        
-    }    
+        cardsArray.push(new CardProduct(element));
+    }
 }
