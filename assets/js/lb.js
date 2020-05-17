@@ -91,7 +91,7 @@ class Cart {
 
         } else { //panier vide
             // A faire : Centrer le Texte.
-            this.container.innerHTML = `<div><h1 class="mx-auto h4">Votre panier est vide !</h1></div>`;
+            this.container.innerHTML = `<h1 class="mx-auto h4">Votre panier est vide !</h1>`;
             this.container.className = ``;
 
         }
@@ -119,15 +119,18 @@ class Cart {
             let index = this.isIncart(e)[1]; //récupère l'index si déjà dans le panier
             if (boolIncart) {
                 this.products[index].qty += parseInt(qty); //si déjà dans panier, ajoute les quantités
+                e.qty -= parseInt(qty); //met à jour les stocks 
             } else {
                 let copie = Object.assign({}, e); //sinon, copie l'objet
                 copie.qty = parseInt(qty); //modifie les quantités
                 this.products.push(copie); //ajoute au panier
+                e.qty -= parseInt(qty);//met à jour les stocks
             }
 
         } else {
             this.products[0] = Object.assign({}, e); //si le panier est vide, ajoute l'article
             this.products[0].qty = parseInt(qty); //et modifie les quantités
+            e.qty -= parseInt(qty);//met à jour les stocks
         }
         ///pour tester la fonction en console
         console.log(myCart.products);
@@ -216,6 +219,7 @@ class CardProduct {
                     const element = productsArray[index];
                     if (element.ref === ref) {
                         myCart.addToCart(element, inputQtyValue);
+                        document.getElementById(`inputCardsQty${ref}`).value = 0;
                         console.log(inputQtyValue);
                     };
                 }
@@ -273,8 +277,9 @@ productsArray[15] = new Product(`Veste en laine`, `Ravissante veste réalisée e
 //création des cards dans un tableau
 let cardsArray = [];
 
-//cré dynamiquement les cards en html par cetégorie cliqué dans navBar
+//cré dynamiquement les cards en html par cetégorie cliquée dans navBar
 let nBtn = document.getElementsByClassName('nav-item nav-link text-white');
+let cards = document.getElementById(`cards`);
 for (let i = 0; i < nBtn.length; i++) {
     nBtn[i].addEventListener('click', function showProducts() {
         let idCatData = document.getElementById(this.id);
@@ -288,6 +293,7 @@ for (let i = 0; i < nBtn.length; i++) {
         })
     })
 }
+
 //affichage aléatoire des produits au chargement de la page
 window.onload = function () {
 
