@@ -53,6 +53,7 @@ class Cart {
                 imgDustbin = tdImg.appendChild(document.createElement(`img`));
 
                 //Define Attributes and contents
+                
                 tdInput.setAttribute(`aria-label`, `Sizing example input`);
                 tdInput.setAttribute(`aria-describedby`, `inputGroup-sizing-sm`);
                 tdInput.setAttribute(`type`, `number`);
@@ -62,14 +63,19 @@ class Cart {
                 tdInput.setAttribute(`step`, `1`);
                 tdInput.setAttribute(`id`, `inputCartQty${element.ref}`);
                 imgDustbin.setAttribute(`src`, `assets/img/dustbin.svg`);
-
+                tdPrice.setAttribute(`id`, `elTotalPrice${element.ref}`);
                 //Text par défaut
                 thRefInside.innerText = element.ref;
                 tdName.innerText = element.name;
                 tdPrice.innerText = `${element.price*element.qty} €`; //calcul et affiche le total par article
 
+                //addEventListener
+                tdInput.addEventListener(`change`, function (){
+                    let qty = document.getElementById(this.id);
+                    let ref = this.id.slice(12);
+                    console.log(qty.value, ref); //récupère la qty et la ref à envoyer dans la fonction pour modifier le contenu du panier. fonction A FAIRE !!!
+                })
             }
-
 
             //TTOTAL
             let bodyTrTotal = this.container.appendChild(document.createElement(`tr`));
@@ -78,11 +84,10 @@ class Cart {
             let thTotal = bodyTrTotal.appendChild(document.createElement(`th`));
             let tdTotalE = bodyTrTotal.appendChild(document.createElement(`td`));
             let tdEmpty3 = bodyTrTotal.appendChild(document.createElement(`td`));
-
             thTotal.setAttribute(`scope`, `col`);
+            tdTotalE.setAttribute(`id`, `TotalE`);
             thTotal.innerText = `Total`;
-            this.total =
-                tdTotalE.innerText = `${this.totalPrice()} €`;
+            tdTotalE.innerText = `${this.totalPrice()} €`;
 
             //Add classes CSS
             tdDiv.className = this.cssDivQte;
