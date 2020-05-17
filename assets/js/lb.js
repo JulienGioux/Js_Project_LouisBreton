@@ -35,13 +35,13 @@ class Cart {
         let imgDustbin;
         if (this.products.length > 0) { //verifie si le panier contient quelque chose
             this.container.innerHTML = ``;
-            for (let index = 0; index < this.products.length; index++) {
+            for (let index = 0; index < this.products.length; index++) { //boucle pour créer une ligne par article dans le panier
                 const element = this.products[index];
                 //A FAIRE !!!
-                //créer une ligne par ref
                 //ne pas oublier de faire un myCart.createHTMLCard pour redessiner le panier
-                //quand son contenu est modifié. (onchange sur les champs)
-                //il faudra aussi le redessiner quand on l'affiche (onclick sur icone de navbar)
+                //quand son contenu est modifié. (onchange sur les champs ?)
+                //effacer le champs et appeler une fonction delProdInCart() qui supprime l'article du panier quand qty=0 et au click sur l'icone
+                //il faudra aussi redessiner quand on l'affiche (onclick sur icone de navbar)
                 bodyTr = this.container.appendChild(document.createElement(`tr`));
                 thRefInside = bodyTr.appendChild(document.createElement(`th`));
                 tdName = bodyTr.appendChild(document.createElement(`td`));
@@ -60,7 +60,7 @@ class Cart {
                 tdInput.setAttribute(`min`, `0`);
                 tdInput.setAttribute(`max`, `10`);
                 tdInput.setAttribute(`step`, `1`);
-                tdInput.setAttribute(`id`, `inputQty${element.qty}`);
+                tdInput.setAttribute(`id`, `inputCartQty${element.ref}`);
                 imgDustbin.setAttribute(`src`, `assets/img/dustbin.svg`);
 
                 //Text par défaut
@@ -112,7 +112,7 @@ class Cart {
         });
         return result; //renvoie la valeur par défaut
     }
-    // Ajoute ll'article et les quantité choisi dans le panier
+    // Ajoute l'article et les quantité choisi dans le panier
     addToCart = function (e, qty) {
         if (this.products.length > 0) { //vérifie que le panier n'est pas vide
             let boolIncart = this.isIncart(e)[0]; //vérifie si le produit est déjà dans le panier
@@ -205,18 +205,18 @@ class CardProduct {
         inputQty.setAttribute(`min`, `0`);
         inputQty.setAttribute(`max`, `10`);
         inputQty.setAttribute(`step`, `1`);
-        inputQty.setAttribute(`id`, `inputQty${this.product.ref}`);
-        btnAddToCard.setAttribute(`id`, `btn${this.product.ref}`);
+        inputQty.setAttribute(`id`, `inputCardsQty${this.product.ref}`);
+        btnAddToCard.setAttribute(`id`, `btnAddToCart${this.product.ref}`);
         btnAddToCard.innerText = `Ajouter au panier`;
         btnAddToCard.addEventListener(`click`, function () {
-            let ref = this.id.slice(3);
-            let inputQtyValue = document.getElementById(`inputQty${ref}`).value;
+            let ref = this.id.slice(12);
+            let inputQtyValue = document.getElementById(`inputCardsQty${ref}`).value;
             if (inputQtyValue > 0) {
                 for (let index = 0; index < productsArray.length; index++) {
                     const element = productsArray[index];
                     if (element.ref === ref) {
                         myCart.addToCart(element, inputQtyValue);
-                        // console.log(inputQtyValue);
+                        console.log(inputQtyValue);
                     };
                 }
             }
@@ -291,8 +291,16 @@ for (let i = 0; i < nBtn.length; i++) {
 //affichage aléatoire des produits au chargement de la page
 window.onload = function () {
 
-    for (i = 0; i < 6; i++) {
-        let randomCards = Math.floor(Math.random() * Math.floor(productsArray.length));
-        cardsArray.push(new CardProduct(productsArray[randomCards]));
+    var i, j, k;
+    for (i = productsArray.length -1; i > 0; i--) { //boucle random method fisher yates. Mélange l'ordre des articles dans le array
+      j = Math.floor(Math.random() * i)
+      k = productsArray[i]
+      productsArray[i] = productsArray[j]
+      productsArray[j] = k
     }
+
+    for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec les 9 premiers articles
+        const element = productsArray[index];
+        cardsArray.push(new CardProduct(element));        
+    }    
 }
