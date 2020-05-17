@@ -71,11 +71,8 @@ class Cart {
                     }
                 })
 
-                imgDustbin.addEventListener(`click`, function () {
-                
-                    
+                imgDustbin.addEventListener(`click`, function () {                   
                     let ref = this.id.slice(14);
-
                     let qty = 0;
                     if (element.qty > 0) {
                         for (let index = 0; index < productsArray.length; index++) {
@@ -88,10 +85,6 @@ class Cart {
                             };
                         }
                     }
-
-                    // element.qty = 0;
-                    // myCart.removeNullFromCart();
-                    // myCart.createHTMLCart();
                 })
             }
 
