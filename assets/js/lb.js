@@ -34,7 +34,7 @@ class CardProduct {
     cssImg = `card-img-top`;
     cssCardBody = `card-body`;
     cssCat = `badge badge-info`;
-    cssH1 = `card-title h5`;
+    ccsH1 = `card-title h4`;
     cssP = `card-text`;
     cssPriceTxt = `h5 text-right`;
     cssPriceBadge = `badge badge-primary p-2 my-auto`;
@@ -97,7 +97,7 @@ class CardProduct {
         imgProduct.className = this.cssImg;
         divCarddBody.className = this.cssCardBody;
         pCat.className = this.cssCat;
-        h1Product.className = this.cssH5;
+        h1Product.className = this.cssH1;
         pDescr.className = this.cssP;
         priceTxt.className = this.cssPriceTxt;
         priceBadge.className = this.cssPriceBadge;
