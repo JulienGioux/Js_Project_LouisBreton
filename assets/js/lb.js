@@ -164,6 +164,8 @@ class Cart {
         this.removeNullFromCart();
         let nbArticleHTML = document.getElementById(`nbArticle`);
         nbArticleHTML.innerText = this.calcNbArticles();
+        let bagdeStockID = document.getElementById(`badgeStock${e.ref}`);
+        bagdeStockID.innerText = `Stock: ${e.qty}`;
     }
     //calcul du total dans le panier
     totalPrice = function () {
@@ -205,7 +207,8 @@ class CardProduct {
     cssInputTxt = `input-group-text`;
     cssInputQty = `form-control`;
     cssBtn = `btn btn-dark m-1 w-100`;
-
+    cssStockTxt = `h5 text-right`;
+    cssStockBadge = `badge badge-primary p-2 my-auto`;
     createHTMLCard = function () {
         //create and append Html elements
         let divCol = this.container.appendChild(document.createElement(`div`));
@@ -215,6 +218,8 @@ class CardProduct {
         let pCat = divCarddBody.appendChild(document.createElement(`p`));
         let h1Product = divCarddBody.appendChild(document.createElement(`h1`));
         let pDescr = divCarddBody.appendChild(document.createElement(`p`));
+        let stockTxt = divCarddBody.appendChild(document.createElement(`h2`));
+        let stockBadge = stockTxt.appendChild(document.createElement(`span`));
         let priceTxt = divCarddBody.appendChild(document.createElement(`h2`));
         let priceBadge = priceTxt.appendChild(document.createElement(`span`));
         let divContQty = divCarddBody.appendChild(document.createElement(`div`));
@@ -230,6 +235,8 @@ class CardProduct {
         pCat.innerText = this.product.cat;
         h1Product.innerText = this.product.name;
         pDescr.innerText = this.product.descr;
+        stockBadge.innerText = `Stock: ${this.product.qty}`;
+        stockBadge.setAttribute(`id`, `badgeStock${this.product.ref}`);
         priceBadge.innerText = `${this.product.price} €`;
         inputTxt.innerText = `Qté`;
         inputQty.setAttribute(`aria-label`, `Sizing example input`);
@@ -276,10 +283,12 @@ class CardProduct {
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
+                            setTimeout(stockBadge.innerText = `Stock: ${this.product.qty}`, 3000);
                             console.log(inputQtyValue);
                         }
 
                     };
+                    
                 }
             }
             alert(`Votre article a bien été ajouté au panier`)
@@ -309,6 +318,10 @@ class CardProduct {
         inputTxt.className = this.cssInputTxt;
         inputQty.className = this.cssInputQty;
         btnAddToCard.className = this.cssBtn;
+        stockTxt.className = this.cssStockTxt;
+        stockBadge.className = this.cssStockBadge;
+
+
     }
     constructor(product) {
         this.product = product;
