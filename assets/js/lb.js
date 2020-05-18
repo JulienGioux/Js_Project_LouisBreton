@@ -283,7 +283,6 @@ class CardProduct {
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
-                            setTimeout(stockBadge.innerText = `Stock: ${this.product.qty}`, 3000);
                             console.log(inputQtyValue);
                         }
 
