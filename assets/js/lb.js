@@ -274,7 +274,6 @@ class CardProduct {
 
 
     }
-
     constructor(product) {
         this.product = product;
         this.createHTMLCard();
