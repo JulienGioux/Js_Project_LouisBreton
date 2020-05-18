@@ -163,7 +163,9 @@ class Cart {
         }
         this.removeNullFromCart();
         let nbArticleHTML = document.getElementById(`nbArticle`);
-        nbArticleHTML.innerText = this.calcNbArticles();   
+        nbArticleHTML.innerText = this.calcNbArticles();
+        let stockBadgeId = document.getElementById(`badgeStock${this.e.ref}`);
+        stockBadgeId.innerText = `stock : ${this.e.qty}`;
     }
     //calcul du total dans le panier
     totalPrice = function () {
@@ -199,7 +201,7 @@ class CardProduct {
     cssImg = `card-img-top`;
     cssCardBody = `card-body`;
     cssCat = `badge badge-info`;
-    ccsH1 = `card-title h4`;
+    cssH1 = `card-title h4`;
     cssP = `card-text`;
     cssPriceTxt = `h5 text-right`;
     cssPriceBadge = `badge badge-primary p-2 my-auto`;
@@ -207,6 +209,8 @@ class CardProduct {
     cssDivChildQty = `input-group-prepend ml-1 ml-auto`;
     cssInputTxt = `input-group-text`;
     cssInputQty = `form-control`;
+    cssStockTxt = `h5 text-right`;
+    cssStockBadge = `badge badge-primary p-2 my-auto`;
     cssBtn = `btn btn-dark m-1 w-100`;
 
     createHTMLCard = function () {
@@ -218,6 +222,8 @@ class CardProduct {
         let pCat = divCarddBody.appendChild(document.createElement(`p`));
         let h1Product = divCarddBody.appendChild(document.createElement(`h1`));
         let pDescr = divCarddBody.appendChild(document.createElement(`p`));
+        let stockTxt = divCarddBody.appendChild(document.createElement(`h2`));
+        let stockBadge = stockTxt.appendChild(document.createElement(`span`));
         let priceTxt = divCarddBody.appendChild(document.createElement(`h2`));
         let priceBadge = priceTxt.appendChild(document.createElement(`span`));
         let divContQty = divCarddBody.appendChild(document.createElement(`div`));
@@ -233,6 +239,8 @@ class CardProduct {
         pCat.innerText = this.product.cat;
         h1Product.innerText = this.product.name;
         pDescr.innerText = this.product.descr;
+        stockBadge.innerText = `stock : ${this.product.qty}`;
+        stockBadge.setAttribute(`id`, `badgeStock${this.product.ref}`);
         priceBadge.innerText = `${this.product.price} €`;
         inputTxt.innerText = `Qté`;
         inputQty.setAttribute(`aria-label`, `Sizing example input`);
@@ -262,7 +270,6 @@ class CardProduct {
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
                             console.log(inputQtyValue);
                         }
-
                     };
                 }
             }
@@ -273,13 +280,11 @@ class CardProduct {
                     if (element.ref === ref) {
                         let incart = myCart.isIncart(element);
                         
-                        
                         if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
                             window.alert(`Vous ne pouvez commander que 10 articles par référence`);
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
-                            console.log(inputQtyValue);
                         }
 
                     };
@@ -300,6 +305,8 @@ class CardProduct {
 
 
         //Add classes CSS
+        stockTxt.className = this.cssStockTxt;
+        stockBadge.className = this.cssStockBadge;
         divCol.className = this.cssCardCol;
         divCard.className = this.cssCard;
         imgProduct.className = this.cssImg;
@@ -323,16 +330,16 @@ class CardProduct {
 
 //création des ojects produits dans un tableau
 const productsArray = [];
-productsArray[0] = new Product(`Bracelets Or Flèches`, `Set de 4 bracelets en or`, cat[1], 149, `02323`, `bracelet3`);
-productsArray[1] = new Product(`Bracelet Pierres Naturelles`, `PIERRE NATURELLE, LA PIERRE DE LAVE OFFRE DES TEINTES DIVERSES À CE BRACELET DONT LA DISCRÉTION PERMETTRA À TOUS DE L’ADOPTER.`, cat[1], 49, `02328`, `bracelet1`);
+productsArray[0] = new Product(`Bracelets Or Flèches`, `Set de 4 bracelets en or féminin et porteur de sens, il s'inscrit dans la tendance des bijoux à posséder absolument.`, cat[1], 149, `02323`, `bracelet3`);
+productsArray[1] = new Product(`Bracelet Pierres Naturelles`, `Pierre Naturelle, la pierre de lave offre des teintes diverses à ce bracelet dont la discrétion permettra à tous de l'adopter.`, cat[1], 49, `02328`, `bracelet1`);
 productsArray[2] = new Product(`Bague Argent`, `Bague peinte à la main en argent`, cat[1], 78, `02332`, `bracelet2`);
 productsArray[3] = new Product(`Boucles d'oreilles Or`, `Boucles d'oreilles pendantes en pierres minérales turquoises. L'élégance au naturel.`, cat[1], 68, `02329`, `earings`);
 productsArray[4] = new Product(`Collier double rang`, `Un modèle hyper tendance de notre collection fantaisie, ce collier plaqué or double rang qui s'adaptera parfaitement à votre tour de cou pour sublimer toutes vos soirées !`, cat[1], 68, `02326`, `necklace1`);
-productsArray[5] = new Product(`Collier multirangs`, `Succombez face à ce magnifique collier trois rangs en plaqué Or 750 3mic, optant pour des formes graphiques super tendances et utilisant des longueurs différentes, ce collier se posera magnifiquement bien sur votre décolleté. Il se portera en journée comme en soirée avec toutes vos tenues favorites. `, cat[1], 89, `02335`, `necklace2`);
+productsArray[5] = new Product(`Collier multirangs`, `Succombez face à ce magnifique collier trois rangs en plaqué Or 750 3mic, optant pour des formes graphiques super tendances et utilisant des longueurs différentes. Il se portera en journée comme en soirée avec toutes vos tenues favorites. `, cat[1], 89, `02335`, `necklace2`);
 productsArray[6] = new Product(`Collier Anneau`, `Egaillez vos journées en optant pour ce magnifique collier en plaqué or et son joli anneau comme pendentif. Il se posera délicatement sur votre décolleté pour un porté raffiné et élégant. On adore ! `, cat[1], 59, `02323`, `necklace3`);
 productsArray[7] = new Product(`Pochette Cuir`, `Tout petit, tout mignon. N'emportez que le minimum ! Petit sac économique, tout en cuir. Dimensions extérieures : 20 (l) x15 (h) x4 (p) cm. Capacité intérieure : 14 (l) x11 (h) x 2 (p) cm`, cat[2], 125, `12895`, `pochetteCuir`);
 productsArray[8] = new Product(`Sac Bandoulière Cuir`, `Cuir végétal cousu main. Avec 1 compartiment intérieur zippé, portes stylos, 2 poches intérieures non zippées. Lanière amovible et réglable. Dimensions :  Hauteur 40 cm Largeur  27 cm Profondeur 11 cm`, cat[2], 140, `12892`, `sacBandouliere`);
-productsArray[9] = new Product(`Sac à main Cuir`, `Elégant et contemporain, l'accessoire idéal de la citadine ... Intérieur doublé, comportant une poche zippée, 5 poches plaquées couvrant toutes les utilisations (portable, stylos, pochette mouchoirs ...), 1 mousqueton sur lanière de 30 cms, intégrée au sac en guise de porte-clés. Poche extérieure de la largeur du sac sur 27 cms de hauteur. Largeur du sac : 33 cms Hauteur du sac : 32 cm`, cat[2], 90, `12887`, `sacMain`);
+productsArray[9] = new Product(`Sac à main Cuir`, `Elégant et contemporain, l'accessoire idéal de la citadine ... Intérieur doublé, comportant une poche zippée, 5 poches plaquées couvrant toutes les utilisations (portable, stylos, pochette mouchoirs ...). Largeur du sac : 33 cms Hauteur du sac : 32 cm`, cat[2], 90, `12887`, `sacMain`);
 productsArray[10] = new Product(`Sac de voyage Cuir`, `Ce sac en cuir haut de gamme de taille plus grande est le compagnon idéal en toutes occasions. Que vous partiez en escapade le temps d'un week-end, que vous alliez au sport ou vous rendiez à vos activités de loisirs, ce sac de voyage dipose de toute la place nécessaire. Sa taille et son look élégant en font le partenaire idéal pour toutes vos sorties. 100% fait à la main: Grâce à des coutures soignées et d'excellente fabrication cette sac est un fidèle compagnon.`, cat[2], 139, `12889`, `sacVoyage`);
 productsArray[11] = new Product(`Pull Homme`, `Pull ras du cou bleu 52% polyester , 48% coton.`, cat[0], 170, `17839`, `pullhomme1`);
 productsArray[12] = new Product(`Pull Homme 100% cachemire`, `Pull ras du cou en cachemire doux camel.`, cat[0], 229, `17203`, `pullhomme2`);
@@ -343,7 +350,7 @@ productsArray[15] = new Product(`Veste en laine`, `Ravissante veste réalisée e
 //création des cards dans un tableau
 let cardsArray = [];
 
-//cré dynamiquement les cards en html par cetégorie cliquée dans navBar
+//créer dynamiquement les cards en html par catégorie cliquée dans navBar
 let nBtn = document.getElementsByClassName('nav-item nav-link text-white');
 let cards = document.getElementById(`cards`);
 for (let i = 0; i < nBtn.length; i++) {
