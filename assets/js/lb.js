@@ -164,7 +164,7 @@ class Cart {
         this.removeNullFromCart();
         let nbArticleHTML = document.getElementById(`nbArticle`);
         nbArticleHTML.innerText = this.calcNbArticles();
-        let bagdeStockID = document.getElementById(`badgeStock${e.ref}`);
+        let bagdeStockID = document.getElementById(`badgeStock${e.ref}`); 
         bagdeStockID.innerText = `Stock: ${e.qty}`;
     }
     //calcul du total dans le panier
@@ -285,9 +285,7 @@ class CardProduct {
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
                             alert(`Votre article a bien été ajouté au panier`);
                         }
-
-                    };
-                    
+                    };          
                 }
             }
             
