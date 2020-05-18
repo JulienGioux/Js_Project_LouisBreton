@@ -258,7 +258,7 @@ class CardProduct {
 
 
                         if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
-                            window.alert(`Vous ne pouvez commander que 10 articles par référence`);
+                            $('#alert').modal('show');
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
@@ -277,7 +277,7 @@ class CardProduct {
 
 
                         if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
-                            window.alert(`Vous ne pouvez commander que 10 articles par référence`);
+                            $('#alert').modal('show');
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
