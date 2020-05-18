@@ -284,8 +284,18 @@ class CardProduct {
                     };
                 }
             }
+            alert(`Votre article a bien été ajouté au panier`)
         });
 
+            if(this.product.cat == `jewels`) {
+                pCat.innerText = `Bijoux`;
+                console.log(this.product.cat);
+            } else if (this.product.cat == `clothes`) {
+                pCat.innerText = `Vêtements`;
+                console.log(this.product.cat);
+            } else if (this.product.cat == `bags`) {
+                pCat.innerText = `Sacs`;
+            }
 
 
         //Add classes CSS
