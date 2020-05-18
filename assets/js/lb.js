@@ -3,13 +3,6 @@ const pathImg = `assets/img/`;
 
 class Cart {
     ///cart pauline !!!
-    ///Actuellement une base fonctionne pour ajouter des produits
-    ///Le panier ne se met à jour qu'en le fermant et en le réaffichant
-    ///Et uniquement avec les articles ajoutés via les cards sur la page !!!
-    ///les inputs pour changer les qantités ne servent qu'à l'affichage
-    ///les modifier n'a aucune incidence sur le contenu du panier.
-    ///les prix ne sont pas multipliés par les quantités non plus
-    ///Bref on a encore du taff... ;)
     container = document.getElementById(`containerList`); //inutile de redessiner toute la modal, le tbody suffit
     // cssTable = `table table-borderless text-center m-0`;
     cssDivQte = `input-group-prepend ml-1 ml-auto`;
@@ -24,36 +17,27 @@ class Cart {
     }
     createHTMLCart = function () {
 
-        let bodyTr;
-        let thRefInside;
-        let tdName;
-        let tdQte;
-        let tdDiv;
-        let tdInput;
-        let tdPrice;
-        let tdImg;
-        let imgDustbin;
+
         if (this.products.length > 0) { //verifie si le panier contient quelque chose
             this.container.innerHTML = ``;
             for (let index = 0; index < this.products.length; index++) { //boucle pour créer une ligne par article dans le panier
                 const element = this.products[index];
                 //A FAIRE !!!
-                //ne pas oublier de faire un myCart.createHTMLCard pour redessiner le panier
-                //quand son contenu est modifié. (onchange sur les champs ?)
-                //effacer le champs et appeler une fonction delProdInCart() qui supprime l'article du panier quand qty=0 et au click sur l'icone
                 //il faudra aussi redessiner quand on l'affiche (onclick sur icone de navbar)
-                bodyTr = this.container.appendChild(document.createElement(`tr`));
-                thRefInside = bodyTr.appendChild(document.createElement(`th`));
-                tdName = bodyTr.appendChild(document.createElement(`td`));
-                tdQte = bodyTr.appendChild(document.createElement(`td`));
-                tdDiv = tdQte.appendChild(document.createElement(`div`));
-                tdInput = tdDiv.appendChild(document.createElement(`input`));
-                tdPrice = bodyTr.appendChild(document.createElement(`td`));
-                tdImg = bodyTr.appendChild(document.createElement(`td`));
-                imgDustbin = tdImg.appendChild(document.createElement(`img`));
-
+                let bodyTr = this.container.appendChild(document.createElement(`tr`));
+                let thRefInside = bodyTr.appendChild(document.createElement(`th`));
+                let tdName = bodyTr.appendChild(document.createElement(`td`));
+                let tdQte = bodyTr.appendChild(document.createElement(`td`));
+                let tdDiv = tdQte.appendChild(document.createElement(`div`));
+                let tdInput = tdDiv.appendChild(document.createElement(`input`));
+                let tdPrice = bodyTr.appendChild(document.createElement(`td`));
+                let tdImg = bodyTr.appendChild(document.createElement(`td`));
+                let imgDustbin = tdImg.appendChild(document.createElement(`img`));
+                //Add classes CSS
+                tdDiv.className = this.cssDivQte;
+                tdInput.className = this.cssInput;
                 //Define Attributes and contents
-                
+
                 tdInput.setAttribute(`aria-label`, `Sizing example input`);
                 tdInput.setAttribute(`aria-describedby`, `inputGroup-sizing-sm`);
                 tdInput.setAttribute(`type`, `number`);
@@ -63,31 +47,44 @@ class Cart {
                 tdInput.setAttribute(`step`, `1`);
                 tdInput.setAttribute(`id`, `inputCartQty${element.ref}`);
                 imgDustbin.setAttribute(`src`, `assets/img/dustbin.svg`);
+                imgDustbin.setAttribute(`id`, `removeFromCart${element.ref}`);
                 tdPrice.setAttribute(`id`, `elTotalPrice${element.ref}`);
-                //Text par défaut
+                //Text
                 thRefInside.innerText = element.ref;
                 tdName.innerText = element.name;
                 tdPrice.innerText = `${element.price*element.qty} €`; //calcul et affiche le total par article
 
                 //addEventListener
-                tdInput.addEventListener(`change`, function (){
+                tdInput.addEventListener(`change`, function () {
                     let qty = document.getElementById(this.id).value;
                     let ref = this.id.slice(12);
                     if (element.qty > 0) {
                         for (let index = 0; index < productsArray.length; index++) {
                             const e = productsArray[index];
                             if (e.ref === ref) {
-                                qty = qty - element.qty;
+                                qty = parseInt(qty) - parseInt(element.qty);
                                 myCart.addToCart(e, qty);
                                 myCart.createHTMLCart();
-                                console.log(myCart.products);
+                                console.log(myCart.products); //pour vérifier le contenu du panier dans la console
                             };
-                                
-                            
-
                         }
                     }
+                })
 
+                imgDustbin.addEventListener(`click`, function () {
+                    let ref = this.id.slice(14);
+                    let qty = 0;
+                    if (element.qty > 0) {
+                        for (let index = 0; index < productsArray.length; index++) {
+                            const e = productsArray[index];
+                            if (e.ref === ref) {
+                                qty = parseInt(qty) - parseInt(element.qty);
+                                myCart.addToCart(e, qty);
+                                myCart.createHTMLCart();
+                                console.log(myCart.products); //pour vérifier le contenu du panier dans la console
+                            };
+                        }
+                    }
                 })
             }
 
@@ -103,9 +100,7 @@ class Cart {
             thTotal.innerText = `Total`;
             tdTotalE.innerText = `${this.totalPrice()} €`;
 
-            //Add classes CSS
-            tdDiv.className = this.cssDivQte;
-            tdInput.className = this.cssInput;
+            // //Add classes CSS
             tdTotalE.className = this.csstdTotalE;
 
 
@@ -116,7 +111,15 @@ class Cart {
     }
     /// END CART PAULINE => "myCart.createHTMLCart();" or in class "this.createHTMLCart();"
 
-
+    removeNullFromCart = function () {
+        this.products.forEach(element => {
+            if (element.qty == 0) {
+                let i = this.products.indexOf(element);
+                let iPlus = parseInt(i) + 1;
+                this.products.splice(i, iPlus);
+            }
+        });
+    }
 
     // Verifie si la référence du produit passé en paramètre existe (objet)
     //  => renvoit un array [boolean, index]
@@ -133,6 +136,7 @@ class Cart {
     // Ajoute l'article et les quantité choisi dans le panier
     addToCart = function (e, qty) {
         if (this.products.length > 0) { //vérifie que le panier n'est pas vide
+            this.removeNullFromCart();
             let boolIncart = this.isIncart(e)[0]; //vérifie si le produit est déjà dans le panier
             let index = this.isIncart(e)[1]; //récupère l'index si déjà dans le panier
             if (boolIncart) {
@@ -150,13 +154,7 @@ class Cart {
             this.products[0].qty = parseInt(qty); //et modifie les quantités
             e.qty -= parseInt(qty); //met à jour les stocks
         }
-
-        ///pour tester la fonction en console
-        console.log(myCart.products);
-    }
-
-    updateCart = function (ref, qty) {
-
+        this.removeNullFromCart();
     }
     //calcul du total dans le panier
     totalPrice = function () {
@@ -244,9 +242,17 @@ class CardProduct {
                 for (let index = 0; index < productsArray.length; index++) {
                     const element = productsArray[index];
                     if (element.ref === ref) {
-                        myCart.addToCart(element, inputQtyValue);
-                        document.getElementById(`inputCardsQty${ref}`).value = 0;
-                        console.log(inputQtyValue);
+                        let incart = myCart.isIncart(element);
+                        
+                        
+                        if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
+                            window.alert(`Vous ne pouvez commander que 10 articles par référence`);
+                        } else {
+                            myCart.addToCart(element, inputQtyValue);
+                            document.getElementById(`inputCardsQty${ref}`).value = 0;
+                            console.log(inputQtyValue);
+                        }
+
                     };
                 }
             }
@@ -320,18 +326,15 @@ for (let i = 0; i < nBtn.length; i++) {
 }
 
 //affichage aléatoire des produits au chargement de la page
-window.onload = function () {
+var i, j, k;
+for (i = productsArray.length - 1; i > 0; i--) { //boucle random method fisher yates. Mélange l'ordre des articles dans le array
+    j = Math.floor(Math.random() * i)
+    k = productsArray[i]
+    productsArray[i] = productsArray[j]
+    productsArray[j] = k
+}
 
-    var i, j, k;
-    for (i = productsArray.length - 1; i > 0; i--) { //boucle random method fisher yates. Mélange l'ordre des articles dans le array
-        j = Math.floor(Math.random() * i)
-        k = productsArray[i]
-        productsArray[i] = productsArray[j]
-        productsArray[j] = k
-    }
-
-    for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec les 9 premiers articles
-        const element = productsArray[index];
-        cardsArray.push(new CardProduct(element));
-    }
+for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec les 9 premiers articles
+    const element = productsArray[index];
+    cardsArray.push(new CardProduct(element));
 }
