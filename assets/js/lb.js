@@ -104,7 +104,7 @@ class Cart {
 
         } else { //panier vide
             // A faire : Centrer le Texte.
-            this.container.innerHTML = `<h1 class="mx-auto h4">Votre panier est vide !</h1>`;
+            this.container.innerHTML = `<td colspan="5"><h1 class="mx-auto h5">Votre panier est vide !</h1></td>`;
         }
     }
     /// END CART PAULINE => "myCart.createHTMLCart();" or in class "this.createHTMLCart();"
@@ -262,7 +262,7 @@ class CardProduct {
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
-                            alert(`Votre article a bien été ajouté au panier`);
+                            $('#article').modal('show');
                         }
 
                     };
@@ -281,14 +281,13 @@ class CardProduct {
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
-                            alert(`Votre article a bien été ajouté au panier`);
+                            $('#article').modal('show');
                         }
 
                     };
                     
                 }
             }
-            
         });
 
         if (this.product.cat == `jewels`) {
