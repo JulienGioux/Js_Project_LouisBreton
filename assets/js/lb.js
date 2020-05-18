@@ -192,7 +192,7 @@ class Product {
 class CardProduct {
     container = document.getElementById(`cards`);
     cssCardCol = `col-sm-4 mt-2`;
-    cssCard = `card`;
+    cssCard = `card shadow p-3 mb-5 bg-white rounded`;
     cssImg = `card-img-top`;
     cssCardBody = `card-body`;
     cssCat = `badge badge-info`;
