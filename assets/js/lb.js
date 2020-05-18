@@ -242,9 +242,17 @@ class CardProduct {
                 for (let index = 0; index < productsArray.length; index++) {
                     const element = productsArray[index];
                     if (element.ref === ref) {
-                        myCart.addToCart(element, inputQtyValue);
-                        document.getElementById(`inputCardsQty${ref}`).value = 0;
-                        console.log(inputQtyValue);
+                        let incart = myCart.isIncart(element);
+                        
+                        
+                        if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
+                            window.alert(`Vous ne pouvez commander que 10 articles par référence`);
+                        } else {
+                            myCart.addToCart(element, inputQtyValue);
+                            document.getElementById(`inputCardsQty${ref}`).value = 0;
+                            console.log(inputQtyValue);
+                        }
+
                     };
                 }
             }
