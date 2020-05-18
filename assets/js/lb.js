@@ -195,7 +195,7 @@ class CardProduct {
     cssDivContQty = `input-group input-group-sm my-3`;
     cssDivChildQty = `input-group-prepend ml-1 ml-auto`;
     cssInputTxt = `input-group-text`;
-    cssInputQty = `form-control`;
+    cssInputQty = `form-control inputSize`;
     cssBtn = `btn btn-dark m-1 w-100`;
     cssStockTxt = `h5 text-right`;
     cssStockBadge = `badge badge-secondary p-1 my-auto`;

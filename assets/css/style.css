@@ -4,3 +4,7 @@
 a {
     cursor: pointer;
 }
+
+.inputSize {
+    width : 100px;
+}
