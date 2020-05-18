@@ -187,9 +187,6 @@ class Product {
         this.price = price;
         this.imgSrc = `${pathImg}${cat}/${imgSrc}.jpg`;
     }
-    addProduct = function (product) {
-        console.log(product);
-    };
 }
 
 class CardProduct {
