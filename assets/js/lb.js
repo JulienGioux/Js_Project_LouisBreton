@@ -164,8 +164,8 @@ class Cart {
         this.removeNullFromCart();
         let nbArticleHTML = document.getElementById(`nbArticle`);
         nbArticleHTML.innerText = this.calcNbArticles();
-        let stockBadgeId = document.getElementById(`badgeStock${this.e.ref}`);
-        stockBadgeId.innerText = `stock : ${this.e.qty}`;
+        let bagdeStockID = document.getElementById(`badgeStock${e.ref}`);
+        bagdeStockID.innerText = `Stock: ${e.qty}`;
     }
     //calcul du total dans le panier
     totalPrice = function () {
@@ -180,24 +180,21 @@ class Cart {
 
 const myCart = new Cart(); //cré le panier
 class Product {
-    qty = 100;
-    constructor(name, descr, cat, price, ref, imgSrc) {
+    constructor(name, descr, cat, price, ref, imgSrc, qty) {
         this.name = name;
         this.descr = descr;
         this.cat = cat;
         this.ref = ref;
         this.price = price;
         this.imgSrc = `${pathImg}${cat}/${imgSrc}.jpg`;
+        this.qty = qty;
     }
-    addProduct = function (product) {
-        console.log(product);
-    };
 }
 
 class CardProduct {
     container = document.getElementById(`cards`);
     cssCardCol = `col-sm-4 mt-2`;
-    cssCard = `card`;
+    cssCard = `card shadow p-3 mb-5 bg-white rounded`;
     cssImg = `card-img-top`;
     cssCardBody = `card-body`;
     cssCat = `badge badge-info`;
@@ -212,7 +209,8 @@ class CardProduct {
     cssStockTxt = `h5 text-right`;
     cssStockBadge = `badge badge-primary p-2 my-auto`;
     cssBtn = `btn btn-dark m-1 w-100`;
-
+    cssStockTxt = `h5 text-right`;
+    cssStockBadge = `badge badge-primary p-2 my-auto`;
     createHTMLCard = function () {
         //create and append Html elements
         let divCol = this.container.appendChild(document.createElement(`div`));
@@ -233,13 +231,13 @@ class CardProduct {
         let btnAddToCard = divCarddBody.appendChild(document.createElement(`button`));
 
         //Define Attributes and contents
-        divCard.setAttribute(`data-aos`,`zoom-in`);
+        divCard.setAttribute(`data-aos`, `zoom-in`);
         imgProduct.setAttribute(`src`, this.product.imgSrc);
         imgProduct.setAttribute(`alt`, `Photo du produit : ${this.product.name}.jpg`);
         pCat.innerText = this.product.cat;
         h1Product.innerText = this.product.name;
         pDescr.innerText = this.product.descr;
-        stockBadge.innerText = `stock : ${this.product.qty}`;
+        stockBadge.innerText = `Stock: ${this.product.qty}`;
         stockBadge.setAttribute(`id`, `badgeStock${this.product.ref}`);
         priceBadge.innerText = `${this.product.price} €`;
         inputTxt.innerText = `Qté`;
@@ -261,8 +259,8 @@ class CardProduct {
                     const element = productsArray[index];
                     if (element.ref === ref) {
                         let incart = myCart.isIncart(element);
-                        
-                        
+
+
                         if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
                             window.alert(`Vous ne pouvez commander que 10 articles par référence`);
                         } else {
@@ -285,23 +283,24 @@ class CardProduct {
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
+                            setTimeout(stockBadge.innerText = `Stock: ${this.product.qty}`, 3000);
+                            console.log(inputQtyValue);
                         }
 
                     };
+                    
                 }
             }
             alert(`Votre article a bien été ajouté au panier`)
         });
 
-            if(this.product.cat == `jewels`) {
-                pCat.innerText = `Bijoux`;
-                console.log(this.product.cat);
-            } else if (this.product.cat == `clothes`) {
-                pCat.innerText = `Vêtements`;
-                console.log(this.product.cat);
-            } else if (this.product.cat == `bags`) {
-                pCat.innerText = `Sacs`;
-            }
+        if (this.product.cat == `jewels`) {
+            pCat.innerText = `Bijoux`;
+        } else if (this.product.cat == `clothes`) {
+            pCat.innerText = `Vêtements`;
+        } else if (this.product.cat == `bags`) {
+            pCat.innerText = `Sacs`;
+        }
 
 
         //Add classes CSS
@@ -321,6 +320,10 @@ class CardProduct {
         inputTxt.className = this.cssInputTxt;
         inputQty.className = this.cssInputQty;
         btnAddToCard.className = this.cssBtn;
+        stockTxt.className = this.cssStockTxt;
+        stockBadge.className = this.cssStockBadge;
+
+
     }
     constructor(product) {
         this.product = product;
