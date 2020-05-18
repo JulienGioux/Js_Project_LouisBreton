@@ -227,6 +227,7 @@ class CardProduct {
         let btnAddToCard = divCarddBody.appendChild(document.createElement(`button`));
 
         //Define Attributes and contents
+        divCard.setAttribute(`data-aos`,`zoom-in`);
         imgProduct.setAttribute(`src`, this.product.imgSrc);
         imgProduct.setAttribute(`alt`, `Photo du produit : ${this.product.name}.jpg`);
         pCat.innerText = this.product.cat;
