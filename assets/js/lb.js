@@ -110,6 +110,13 @@ class Cart {
         }
     }
     /// END CART PAULINE => "myCart.createHTMLCart();" or in class "this.createHTMLCart();"
+    calcNbArticles = function () {
+        let total = 0;
+        this.products.forEach(element => {
+            total += element.qty
+        });
+        return total;
+    }
 
     removeNullFromCart = function () {
         this.products.forEach(element => {
@@ -155,6 +162,8 @@ class Cart {
             e.qty -= parseInt(qty); //met à jour les stocks
         }
         this.removeNullFromCart();
+        let nbArticleHTML = document.getElementById(`nbArticle`);
+        nbArticleHTML.innerText = this.calcNbArticles();   
     }
     //calcul du total dans le panier
     totalPrice = function () {
@@ -256,6 +265,25 @@ class CardProduct {
                     };
                 }
             }
+            if (inputQtyValue == 0) {
+                let inputQtyValue = 1;
+                for (let index = 0; index < productsArray.length; index++) {
+                    const element = productsArray[index];
+                    if (element.ref === ref) {
+                        let incart = myCart.isIncart(element);
+                        
+                        
+                        if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
+                            window.alert(`Vous ne pouvez commander que 10 articles par référence`);
+                        } else {
+                            myCart.addToCart(element, inputQtyValue);
+                            document.getElementById(`inputCardsQty${ref}`).value = 0;
+                            console.log(inputQtyValue);
+                        }
+
+                    };
+                }
+            }
         });
 
 
@@ -275,10 +303,6 @@ class CardProduct {
         inputTxt.className = this.cssInputTxt;
         inputQty.className = this.cssInputQty;
         btnAddToCard.className = this.cssBtn;
-
-
-
-
     }
 
     constructor(product) {
