@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Louis Breton</title>
 </head>
@@ -51,7 +52,7 @@
     </header>
 
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand text-uppercase text-white" href="#">Louis Breton</a>
+        <a class="navbar-brand text-uppercase text-white" href="index.html">Louis Breton</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -65,7 +66,8 @@
         </div>
         <div class="mr-0">
             <a class="mx-2">
-                <img class="align-top" src="assets/img/contact.svg">
+                <img type="button" data-toggle="modal" data-target="#contactUs" class="align-top" at="nous contacter"
+                    src="assets/img/contact.svg">
             </a>
             <a class="mx-2" data-toggle="modal" data-target="#bucket" id="cartButton" onclick="myCart.createHTMLCart()">
                 <img class="position-absolute" style="z-index: -1;" src="assets/img/panier.svg"><span
@@ -76,9 +78,9 @@
 
     <main>
         <section id="Products" class="container p-2 mt-3">
-            <div id="cards" class="row">
+            <div id="cards" class="row" data-aos="zoom-in">
                 <!-- here comes the cards of each product -->
-                
+
             </div>
         </section>
     </main>
@@ -106,7 +108,7 @@
                         Numéro de Siret : 83217523600013
                         Nom du responsable :
 
-                        Adresse de la société : 43 rue Augustin Normand, - - 29100 Douarnenez
+                        Adresse de la société : 23 Rue Gwin Ruz, 29100 Douarnenez
                         Adresse du siège social de la société : 23 Rue Gwin Ruz, 29100 Douarnenez
 
                         EDITEUR DE LA PUBLICATION : LOUIS BRETON
@@ -120,8 +122,7 @@
             </div>
     </footer>
 
-    <div class="modal fade" id="bucket" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="bucket" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -132,22 +133,52 @@
                 <div class="modal-body" id="modalBody">
                     <table class="table table-borderless text-center m-0">
                         <thead>
-                          <tr>
-                            <th scope="col">Ref</th>
-                            <th scope="col">Produit</th>
-                            <th scope="col">Quantité</th>
-                            <th scope="col">Prix</th>
-                            <th scope="col"></th>
-                          </tr>
+                            <tr>
+                                <th scope="col">Ref</th>
+                                <th scope="col">Produit</th>
+                                <th scope="col">Quantité</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col"></th>
+                            </tr>
                         </thead>
                         <tbody id="containerList"> 
                             <!--container du panier -->
                         </tbody>
-                      </table>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal">Fermer</button>
                     <button type="button" class="btn btn-dark" id="addBucket">Payer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="contactUs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nous contacter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Nom</label>
+                            <input type="text" class="form-control" name="name" placeholder="John">
+                            <label for="recipient-name" class="col-form-label">Prénom</label>
+                            <input type="text" class="form-control" placeholder="Doe">
+                            <label for="email" class="col-form-label">e-mail</label>
+                            <input type="email" class="form-control" name="email" placeholder="johndoe@incognito.com">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text" name="message-text" placeholder="Votre message"></textarea>
+                        </div>
+                    </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary">Envoyer</button>
                 </div>
             </div>
         </div>
@@ -162,7 +193,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/lb.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
-<script src="assets/js/lb.js"></script>
+
 
 </html>

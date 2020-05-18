@@ -196,7 +196,7 @@ class CardProduct {
     cssImg = `card-img-top`;
     cssCardBody = `card-body`;
     cssCat = `badge badge-info`;
-    cssH1 = `card-title h5`;
+    cssH1 = `card-title h4`;
     cssP = `card-text`;
     cssPriceTxt = `h5 text-right`;
     cssPriceBadge = `badge badge-primary p-2 my-auto`;
@@ -224,6 +224,7 @@ class CardProduct {
         let btnAddToCard = divCarddBody.appendChild(document.createElement(`button`));
 
         //Define Attributes and contents
+        divCard.setAttribute(`data-aos`,`zoom-in`);
         imgProduct.setAttribute(`src`, this.product.imgSrc);
         imgProduct.setAttribute(`alt`, `Photo du produit : ${this.product.name}.jpg`);
         pCat.innerText = this.product.cat;
@@ -281,8 +282,18 @@ class CardProduct {
                     };
                 }
             }
+            alert(`Votre article a bien été ajouté au panier`)
         });
 
+            if(this.product.cat == `jewels`) {
+                pCat.innerText = `Bijoux`;
+                console.log(this.product.cat);
+            } else if (this.product.cat == `clothes`) {
+                pCat.innerText = `Vêtements`;
+                console.log(this.product.cat);
+            } else if (this.product.cat == `bags`) {
+                pCat.innerText = `Sacs`;
+            }
 
 
         //Add classes CSS
@@ -301,7 +312,6 @@ class CardProduct {
         inputQty.className = this.cssInputQty;
         btnAddToCard.className = this.cssBtn;
     }
-
     constructor(product) {
         this.product = product;
         this.createHTMLCard();
@@ -360,3 +370,11 @@ for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec le
     const element = productsArray[index];
     cardsArray.push(new CardProduct(element));
 }
+
+
+
+document.querySelectorAll('.btnAddToCard').forEach(button => {
+    button.addEventListener('click', e => {
+        button.classList.toggle('added');
+    });
+});
