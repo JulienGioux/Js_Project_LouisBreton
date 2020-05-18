@@ -16,8 +16,6 @@ class Cart {
         this.createHTMLCart();
     }
     createHTMLCart = function () {
-
-
         if (this.products.length > 0) { //verifie si le panier contient quelque chose
             this.container.innerHTML = ``;
             for (let index = 0; index < this.products.length; index++) { //boucle pour créer une ligne par article dans le panier
@@ -208,7 +206,7 @@ class CardProduct {
     cssInputQty = `form-control`;
     cssBtn = `btn btn-dark m-1 w-100`;
     cssStockTxt = `h5 text-right`;
-    cssStockBadge = `badge badge-primary p-2 my-auto`;
+    cssStockBadge = `badge badge-secondary p-1 my-auto`;
     createHTMLCard = function () {
         //create and append Html elements
         let divCol = this.container.appendChild(document.createElement(`div`));
