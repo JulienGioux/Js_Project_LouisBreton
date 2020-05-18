@@ -373,3 +373,7 @@ document.querySelectorAll('.btnAddToCard').forEach(button => {
         button.classList.toggle('added');
     });
 });
+
+
+$('.navbar-nav>a').on('click', function(){ $('.navbar-collapse').collapse('hide'); });
+    
