@@ -338,3 +338,11 @@ for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec le
     const element = productsArray[index];
     cardsArray.push(new CardProduct(element));
 }
+
+
+
+document.querySelectorAll('.btnAddToCard').forEach(button => {
+    button.addEventListener('click', e => {
+        button.classList.toggle('added');
+    });
+});
