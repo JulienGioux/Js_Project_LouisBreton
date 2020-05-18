@@ -163,7 +163,7 @@ class Cart {
         }
         this.removeNullFromCart();
         let nbArticleHTML = document.getElementById(`nbArticle`);
-        nbArticleHTML.innerText = this.calcNbArticles();   
+        nbArticleHTML.innerText = this.calcNbArticles();
     }
     //calcul du total dans le panier
     totalPrice = function () {
@@ -224,7 +224,7 @@ class CardProduct {
         let btnAddToCard = divCarddBody.appendChild(document.createElement(`button`));
 
         //Define Attributes and contents
-        divCard.setAttribute(`data-aos`,`zoom-in`);
+        divCard.setAttribute(`data-aos`, `zoom-in`);
         imgProduct.setAttribute(`src`, this.product.imgSrc);
         imgProduct.setAttribute(`alt`, `Photo du produit : ${this.product.name}.jpg`);
         pCat.innerText = this.product.cat;
@@ -250,8 +250,8 @@ class CardProduct {
                     const element = productsArray[index];
                     if (element.ref === ref) {
                         let incart = myCart.isIncart(element);
-                        
-                        
+
+
                         if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
                             window.alert(`Vous ne pouvez commander que 10 articles par référence`);
                         } else {
@@ -269,8 +269,8 @@ class CardProduct {
                     const element = productsArray[index];
                     if (element.ref === ref) {
                         let incart = myCart.isIncart(element);
-                        
-                        
+
+
                         if (incart[0] && parseInt(myCart.products[incart[1]].qty) + parseInt(inputQtyValue) > 10) {
                             window.alert(`Vous ne pouvez commander que 10 articles par référence`);
                         } else {
@@ -285,15 +285,13 @@ class CardProduct {
             alert(`Votre article a bien été ajouté au panier`)
         });
 
-            if(this.product.cat == `jewels`) {
-                pCat.innerText = `Bijoux`;
-                console.log(this.product.cat);
-            } else if (this.product.cat == `clothes`) {
-                pCat.innerText = `Vêtements`;
-                console.log(this.product.cat);
-            } else if (this.product.cat == `bags`) {
-                pCat.innerText = `Sacs`;
-            }
+        if (this.product.cat == `jewels`) {
+            pCat.innerText = `Bijoux`;
+        } else if (this.product.cat == `clothes`) {
+            pCat.innerText = `Vêtements`;
+        } else if (this.product.cat == `bags`) {
+            pCat.innerText = `Sacs`;
+        }
 
 
         //Add classes CSS
