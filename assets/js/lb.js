@@ -266,7 +266,7 @@ class CardProduct {
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
-                            console.log(inputQtyValue);
+                            alert(`Votre article a bien été ajouté au panier`);
                         }
                     };
                 }
@@ -283,15 +283,14 @@ class CardProduct {
                         } else {
                             myCart.addToCart(element, inputQtyValue);
                             document.getElementById(`inputCardsQty${ref}`).value = 0;
-                            setTimeout(stockBadge.innerText = `Stock: ${this.product.qty}`, 3000);
-                            console.log(inputQtyValue);
+                            alert(`Votre article a bien été ajouté au panier`);
                         }
 
                     };
                     
                 }
             }
-            alert(`Votre article a bien été ajouté au panier`)
+            
         });
 
         if (this.product.cat == `jewels`) {
