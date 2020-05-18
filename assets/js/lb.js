@@ -199,7 +199,7 @@ class CardProduct {
     cssImg = `card-img-top`;
     cssCardBody = `card-body`;
     cssCat = `badge badge-info`;
-    cssH1 = `card-title h5`;
+    ccsH1 = `card-title h4`;
     cssP = `card-text`;
     cssPriceTxt = `h5 text-right`;
     cssPriceBadge = `badge badge-primary p-2 my-auto`;
@@ -285,8 +285,18 @@ class CardProduct {
                     };
                 }
             }
+            alert(`Votre article a bien été ajouté au panier`)
         });
 
+            if(this.product.cat == `jewels`) {
+                pCat.innerText = `Bijoux`;
+                console.log(this.product.cat);
+            } else if (this.product.cat == `clothes`) {
+                pCat.innerText = `Vêtements`;
+                console.log(this.product.cat);
+            } else if (this.product.cat == `bags`) {
+                pCat.innerText = `Sacs`;
+            }
 
 
         //Add classes CSS
