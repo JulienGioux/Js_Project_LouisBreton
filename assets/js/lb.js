@@ -2,14 +2,11 @@ const cat = [`clothes`, `jewels`, `bags`];
 const pathImg = `assets/img/`;
 
 class Cart {
-    ///cart pauline !!!
-    container = document.getElementById(`containerList`); //inutile de redessiner toute la modal, le tbody suffit
-    // cssTable = `table table-borderless text-center m-0`;
+    container = document.getElementById(`containerList`); //tbody
     cssDivQte = `input-group-prepend ml-1 ml-auto`;
     cssInput = `form-control`;
     csstdTotalE = `text-bold`;
-    products = []; //propriété products : tableau d'objets(articles) ajoutés au 
-    //panier accessible dans la class avec this.products dans la class ou myCart.products dans la page une fois le panier créé (il est cré au chargement de la page en l'occurence)
+    products = [];
     constructor() {
         this.products = [];
         this.total = 0;
@@ -20,8 +17,6 @@ class Cart {
             this.container.innerHTML = ``;
             for (let index = 0; index < this.products.length; index++) { //boucle pour créer une ligne par article dans le panier
                 const element = this.products[index];
-                //A FAIRE !!!
-                //il faudra aussi redessiner quand on l'affiche (onclick sur icone de navbar)
                 let bodyTr = this.container.appendChild(document.createElement(`tr`));
                 let thRefInside = bodyTr.appendChild(document.createElement(`th`));
                 let tdName = bodyTr.appendChild(document.createElement(`td`));
@@ -53,7 +48,7 @@ class Cart {
                 tdPrice.innerText = `${element.price*element.qty} €`; //calcul et affiche le total par article
 
                 //addEventListener
-                tdInput.addEventListener(`change`, function () {
+                tdInput.addEventListener(`change`, function () { //onchange
                     let qty = document.getElementById(this.id).value;
                     let ref = this.id.slice(12);
                     if (element.qty > 0) {
@@ -63,13 +58,12 @@ class Cart {
                                 qty = parseInt(qty) - parseInt(element.qty);
                                 myCart.addToCart(e, qty);
                                 myCart.createHTMLCart();
-                                console.log(myCart.products); //pour vérifier le contenu du panier dans la console
                             };
                         }
                     }
                 })
 
-                imgDustbin.addEventListener(`click`, function () {
+                imgDustbin.addEventListener(`click`, function () { //onclick
                     let ref = this.id.slice(14);
                     let qty = 0;
                     if (element.qty > 0) {
@@ -79,7 +73,6 @@ class Cart {
                                 qty = parseInt(qty) - parseInt(element.qty);
                                 myCart.addToCart(e, qty);
                                 myCart.createHTMLCart();
-                                console.log(myCart.products); //pour vérifier le contenu du panier dans la console
                             };
                         }
                     }
@@ -103,11 +96,10 @@ class Cart {
 
 
         } else { //panier vide
-            // A faire : Centrer le Texte.
             this.container.innerHTML = `<td colspan="5"><h1 class="mx-auto h5">Votre panier est vide !</h1></td>`;
         }
     }
-    /// END CART PAULINE => "myCart.createHTMLCart();" or in class "this.createHTMLCart();"
+    
     calcNbArticles = function () {
         let total = 0;
         this.products.forEach(element => {
