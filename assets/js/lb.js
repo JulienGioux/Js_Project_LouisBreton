@@ -377,13 +377,15 @@ for (let index = 0; index < 9; index++) { //boucle pour créer nos cards avec le
     cardsArray.push(new CardProduct(element));
 }
 
-// document.querySelectorAll('.btnAddToCard').forEach(button => {
-//     button.addEventListener('click', e => {
-//         button.classList.toggle('added');
-//     });
-// });
 
 //Jquery => reduit la navbar bootstrap au click sur les liens
+document.querySelectorAll('.btnAddToCard').forEach(button => {
+    button.addEventListener('click', e => {
+        button.classList.toggle('added');
+    });
+});
+
+
 $('.navbar-nav>a').on('click', function () {
     $('.navbar-collapse').collapse('hide');
 });
