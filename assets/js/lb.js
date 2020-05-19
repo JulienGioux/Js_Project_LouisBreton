@@ -166,6 +166,7 @@ class Cart {
             }
         }
     }
+
     // Ajoute l'article et les quantité choisi dans le panier
     addToCart(e, qty) {
 
@@ -323,6 +324,7 @@ class CardProduct { //cré les cards
         this.createHTMLCard();
     }
 }
+
 //cré le panier
 const myCart = new Cart(); 
 //création des ojects produits dans un tableau
