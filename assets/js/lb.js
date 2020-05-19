@@ -127,16 +127,18 @@ class Cart {
                         $('#noStock').modal('show');
                     } else {
                         this.addToCart(e, qty);
-                        this.createHTMLCart();
+
                     }
 
                 };
             }
 
         }
+        this.createHTMLCart();
 
     }
 
+//vérifie les paramètres à ajouter au panier et informe l'utilisateur 
     checkBeforeToAdd(ref, inputQtyValue) {
         if (inputQtyValue >= 0) {
             if ((inputQtyValue == 0)) {
@@ -146,18 +148,18 @@ class Cart {
                 const element = productsArray[index];
                 if (element.ref === ref) {
                     let incart = this.isIncart(element);
-
-
+                    //Si article commandé en trop grande quantité (10 max)
                     if (incart[0] && parseInt(this.products[incart[1]].qty) + parseInt(inputQtyValue) > 10 || !incart[0] && parseInt(inputQtyValue) > 10) {
                         $('#alert').modal('show');
+                    //si nombre d'article en stock insuffisant
                     } else if (element.qty - inputQtyValue < 0) {
                         $('#noStock').modal('show');
+                    //ajout des articles au panier
                     } else {
                         this.addToCart(element, inputQtyValue);
-                        document.getElementById(`inputCardsQty${ref}`).value = 0;
                         $('#article').modal('show');
                     }
-
+                    document.getElementById(`inputCardsQty${ref}`).value = 0;
                 };
             }
         }
@@ -207,7 +209,9 @@ class Cart {
     }
 }
 
-const myCart = new Cart(); //cré le panier
+
+
+//class product sert à définir nos articles lors de leur création/instanciation
 class Product {
     constructor(name, descr, cat, price, ref, imgSrc, qty) {
         this.name = name;
@@ -314,11 +318,12 @@ class CardProduct { //cré les cards
     }
 
     constructor(product) {
-        this.product = product;
+        this.product = product; //objet de la liste des produits dans productsArray
         this.createHTMLCard();
     }
 }
-
+//cré le panier
+const myCart = new Cart(); 
 //création des ojects produits dans un tableau
 const productsArray = [];
 productsArray[0] = new Product(`Bracelets Or Flèches`, `Set de 4 bracelets en or`, cat[1], 149, `02323`, `bracelet3`, 50);
@@ -339,9 +344,8 @@ productsArray[14] = new Product(`Veste en laine métallisée`, `Ravissante veste
 productsArray[15] = new Product(`Veste en laine`, `Ravissante veste réalisée en laine rose.`, cat[0], 330, `17923`, `veste2`, 84);
 
 //création des cards dans un tableau
-let cardsArray = [];
-
 //cré dynamiquement les cards en html par cetégorie cliquée dans navBar
+let cardsArray = [];
 let nBtn = document.getElementsByClassName('nav-item nav-link text-white');
 let cards = document.getElementById(`cards`);
 for (let i = 0; i < nBtn.length; i++) {
