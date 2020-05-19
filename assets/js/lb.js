@@ -222,7 +222,7 @@ class Product {
 
 class CardProduct { //cré les cards
     container = document.getElementById(`cards`);
-    cssCardCol = `col-sm-4 mt-2`;
+    cssCardCol = `col-12 col-md-6 col-lg-4 mt-2`;
     cssCard = `card shadow p-3 mb-5 bg-white rounded`;
     cssImg = `card-img-top`;
     cssCardBody = `card-body`;
