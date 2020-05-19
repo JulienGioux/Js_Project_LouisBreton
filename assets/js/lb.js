@@ -98,7 +98,7 @@ class Cart {
                 let test = this.products.splice(i, 1);
             }
         });
-        
+
     }
 
     // Verifie si la référence du produit passé en paramètre existe (objet)
@@ -132,9 +132,9 @@ class Cart {
 
                 };
             }
-            
+
         }
-        
+
     }
 
     checkBeforeToAdd(ref, inputQtyValue) {
@@ -188,13 +188,14 @@ class Cart {
                 e.qty -= parseInt(qty); //met à jour les stocks
             }
         }
+        //Actualise l'affichage
         this.removeNullFromCart();
         let nbArticleHTML = document.getElementById(`nbArticle`);
         nbArticleHTML.innerText = this.calcNbArticles();
         let bagdeStockID = document.getElementById(`badgeStock${e.ref}`);
         bagdeStockID.innerText = `Stock: ${e.qty}`;
     }
-    
+
     //calcul du total dans le panier
     totalPrice() {
         let result = 0;
@@ -219,7 +220,7 @@ class Product {
     }
 }
 
-class CardProduct {
+class CardProduct { //cré les cards
     container = document.getElementById(`cards`);
     cssCardCol = `col-sm-4 mt-2`;
     cssCard = `card shadow p-3 mb-5 bg-white rounded`;
@@ -311,6 +312,7 @@ class CardProduct {
         stockTxt.className = this.cssStockTxt;
         stockBadge.className = this.cssStockBadge;
     }
+
     constructor(product) {
         this.product = product;
         this.createHTMLCard();
