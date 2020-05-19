@@ -6,6 +6,7 @@ class Cart {
     cssDivQte = `input-group-prepend ml-1 ml-auto`;
     cssInput = `form-control`;
     csstdTotalE = `text-bold`;
+    cssImgDustbin = `click`;
     products = [];
     constructor() {
         this.products = [];
@@ -27,6 +28,7 @@ class Cart {
                 let tdImg = bodyTr.appendChild(document.createElement(`td`));
                 let imgDustbin = tdImg.appendChild(document.createElement(`img`));
                 //Add classes CSS
+                imgDustbin.className = this.cssImgDustbin
                 tdDiv.className = this.cssDivQte;
                 tdInput.className = this.cssInput;
                 //Define Attributes and contents
@@ -208,7 +210,6 @@ class Cart {
         return result;
     }
 }
-
 
 
 //class product sert à définir nos articles lors de leur création/instanciation
