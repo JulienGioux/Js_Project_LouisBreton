@@ -4,13 +4,12 @@ const pathImg = `assets/img/`;
 class Cart {
     container = document.getElementById(`containerList`); //tbody
     cssDivQte = `input-group-prepend ml-1 ml-auto`;
-    cssInput = `form-control`;
+    cssInput = `form-control inpputSize`;
     csstdTotalE = `text-bold`;
     cssImgDustbin = `click`;
     products = [];
     constructor() {
         this.products = [];
-        this.total = 0;
         this.createHTMLCart();
     }
     createHTMLCart() {
